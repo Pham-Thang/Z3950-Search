@@ -17,7 +17,18 @@ cnn.Syntax = RecordSyntax.XML;
 //Connect to the server
 cnn.Connect();
 //Declare your query
-var query = "Title=\"demo\"";
+// https://nlv.gov.vn/tai-lieu-nghiep-vu/xml-metadata-va-dublin-core-metadata.html
+// Title - Nhan đề của tài liệu
+// Creator - Tác giả của tài liệu, bao gồm cả tác giả cá nhân và tác giả tập thể.
+// Subject
+// Description
+// Publisher
+// Date
+// Format
+// Identifier=\"9786046482307\" - Các thông tin về định danh tài liệu, các nguồn tham chiếu đến, hoặc chuỗi ký tự để định vị tài nguyên
+// Language
+
+var query = "Title=\"p\" OR Creator=\"p\" OR Subject=\"p\" OR Description=\"p\" OR Publisher=\"p\" OR Identifier=\"p\"";
 //Create the object for query. 
 CQLQuery q = new CQLQuery(query);
 IResultSet results;
@@ -30,9 +41,10 @@ for (uint i = 0; i < results.Size; i++)
     //This string is having the xml in string format. Convert it into the xml via XmlDocument
     XmlDocument doc = new XmlDocument();
     doc.LoadXml(temp);
-    Console.WriteLine(doc.InnerXml);
     //perform the needful operations
     //............... 
     //...............
     //............... 
+    Console.WriteLine("-------------------");
+    Console.WriteLine(doc.InnerXml);
 }
