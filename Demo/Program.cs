@@ -30,9 +30,9 @@ for (uint i = 0; i < results.Size; i++)
     //This string is having the xml in string format. Convert it into the xml via XmlDocument
     XmlDocument doc = new XmlDocument();
     doc.LoadXml(temp);
+    Console.WriteLine(doc.InnerXml);
     //perform the needful operations
     //............... 
     //...............
     //............... 
-    Console.WriteLine(doc.InnerXml);
 }
