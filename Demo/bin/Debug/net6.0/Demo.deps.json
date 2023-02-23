@@ -1,0 +1,53 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Demo/1.0.0": {
+        "dependencies": {
+          "Zoom.Net": "1.0.2400.21836",
+          "Zoom.Net.YazSharp": "1.0.2400.21836"
+        },
+        "runtime": {
+          "Demo.dll": {}
+        }
+      },
+      "Zoom.Net/1.0.2400.21836": {
+        "runtime": {
+          "Zoom.Net.dll": {
+            "assemblyVersion": "1.0.2400.21836",
+            "fileVersion": "1.0.2400.21836"
+          }
+        }
+      },
+      "Zoom.Net.YazSharp/1.0.2400.21836": {
+        "runtime": {
+          "Zoom.Net.YazSharp.dll": {
+            "assemblyVersion": "1.0.2400.21836",
+            "fileVersion": "1.0.2400.21836"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Demo/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Zoom.Net/1.0.2400.21836": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Zoom.Net.YazSharp/1.0.2400.21836": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

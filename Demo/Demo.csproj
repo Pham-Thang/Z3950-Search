@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="VCRuntime\**\*.*" />
+	<None Remove="Zoom.Net\**\*.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="VCRuntime\**\*.*" />
+	<Content Include="Zoom.Net\**\*.*" />
+  </ItemGroup>
+	
+	<ItemGroup>
+		<VCRuntimeFiles Include="VCRuntime/**/*.*"/>
+		<ZoomNetFiles Include="Zoom.Net/**/*.*"/>
+	</ItemGroup>
+	
+
+
+  <ItemGroup>
+    <Reference Include="Zoom.Net">
+      <HintPath>Zoom.Net\Zoom.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Zoom.Net.YazSharp">
+      <HintPath>Zoom.Net\Zoom.Net.YazSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+	<!--<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+		<None Update="VCRuntime\**\*.*" CopyToOutputDirectory="PreserveNewest" />
+		<None Update="Zoom.Net\**\*.*" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>-->
+
+	<Target Name="CopyCustomContent" AfterTargets="AfterBuild">
+		<Copy SourceFiles="@(VCRuntimeFiles)" DestinationFolder="$(OutDir)" />
+		<Copy SourceFiles="@(ZoomNetFiles)" DestinationFolder="$(OutDir)" />
+	</Target>
+	<Target Name="CopyCustomContentOnPublish" AfterTargets="Publish">
+		<Copy SourceFiles="@(VCRuntimeFiles)" DestinationFolder="$(PublishDir)" />
+		<Copy SourceFiles="@(ZoomNetFiles)" DestinationFolder="$(PublishDir)" />
+	</Target>
+
+
+</Project>
