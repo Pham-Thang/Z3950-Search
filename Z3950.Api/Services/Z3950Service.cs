@@ -15,10 +15,10 @@ namespace Z3950.Api.Services
             _connectionConfig = configuration.GetSection("Connection").Get<ConnectionConfig>();
         }
 
-        public List<object> Search(SearchParam searchParam)
+        public List<string> Search(SearchParam searchParam)
         {
             IResultSet queryResults;
-            var result = new List<object>();
+            var result = new List<string>();
             string query = BuildQuery(searchParam);
             using (var cnn = GetConnection())
             {
@@ -28,13 +28,17 @@ namespace Z3950.Api.Services
 
                 if (queryResults == null)
                 {
-                    return result;
+                    return null;
                 }
 
                 for (uint i = 0; i < queryResults.Size; i++)
                 {
                     string content = Encoding.UTF8.GetString(queryResults[i].Content);
-                    FileMARCXml marcRecords = new FileMARCXml(content);
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        result.Add(content);
+                    }
+                    //FileMARCXml marcRecords = new FileMARCXml(content);
                     //if (string.IsNullOrWhiteSpace(content))
                     //{
                     //    continue;
@@ -58,7 +62,7 @@ namespace Z3950.Api.Services
                     //        Console.WriteLine("Something awful has happened. The author field should never be a control field!");
                     //    }
                     //}
-                    result.Add(content);
+                    //result.Add(content);
                 }
             }
 
@@ -72,13 +76,13 @@ namespace Z3950.Api.Services
 
             foreach (var prop in props)
             {
-                if (query.Length != 0)
-                {
-                    query.Append(" OR ");
-                }
                 var value = prop.GetValue(searchParam);
                 if (!string.IsNullOrEmpty(value?.ToString()))
                 {
+                    if (query.Length != 0)
+                    {
+                        query.Append(" OR ");
+                    }
                     query.Append($"{prop.Name}=\"{value}\"");
                 }
             }

@@ -24,9 +24,12 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MARC" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <!--<PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.2.3" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CSharp_MARC\CSharp_MARC.csproj" />
   </ItemGroup>
 	
 	<ItemGroup>

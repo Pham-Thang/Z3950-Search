@@ -10,11 +10,16 @@ namespace Z3950.Api.Controllers
     {
         private readonly ILogger<SearchingController> _logger;
         private readonly IZ3950Service _z3950Service;
+        private readonly IMARCXmlReader _mARCXmlReader;
 
-        public SearchingController(ILogger<SearchingController> logger, IZ3950Service z3950Service)
+        public SearchingController(
+            ILogger<SearchingController> logger, 
+            IZ3950Service z3950Service, 
+            IMARCXmlReader mARCXmlReader)
         {
             _logger = logger;
             _z3950Service = z3950Service;
+            _mARCXmlReader = mARCXmlReader;
         }
 
         //[HttpGet("isbn/${isbn}")]
@@ -32,14 +37,39 @@ namespace Z3950.Api.Controllers
             {
                 prop.SetValue(searchParam, queryText);
             }
-            var result = _z3950Service.Search(searchParam);
+            var resultSet = _z3950Service.Search(searchParam);
+            var result = _mARCXmlReader.ReadMARCXmlStrings<DocumentEntity>(resultSet);
             return Ok(result);
+        }
+
+        [HttpGet("title/{queryText}")]
+        public IActionResult GetByTitle(string queryText)
+        {
+            var searchParam = new SearchParam()
+            {
+                Title = queryText
+            };
+            var marcxmls = _z3950Service.Search(searchParam);
+            var result = _mARCXmlReader.ReadMARCXmlStrings<DocumentEntity>(marcxmls);
+            return Ok(result);
+        }
+
+        [HttpGet("title/{queryText}/marcxmlstring")]
+        public IActionResult GetMARCXmlStringByTitle(string queryText)
+        {
+            var searchParam = new SearchParam()
+            {
+                Title = queryText
+            };
+            var marcxmls = _z3950Service.Search(searchParam);
+            return Ok(marcxmls);
         }
 
         [HttpPost("")]
         public IActionResult GetBySearchParam([FromBody] SearchParam searchParam)
         {
-            var result = _z3950Service.Search(searchParam);
+            var marcxmls = _z3950Service.Search(searchParam);
+            var result = _mARCXmlReader.ReadMARCXmlStrings<DocumentEntity>(marcxmls);
             return Ok(result);
         }
     }
