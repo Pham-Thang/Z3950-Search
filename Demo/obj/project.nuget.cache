@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "f7RQINZ9CPFd874peTV/a5ODSFXe7ZwqWl0wCznDes16mxdW3rYR/IDm3TPf7F3UNl8takrwUz4tIrQDHm5TqQ==",
+  "dgSpecHash": "zz4FybmmOV8Ex1U1owxV6302n+PsJlMqUHU0dBPkmaz/BSiUaiYF/kj/T+lJcB9Bv7d1EBD+i5t/lirErDt7iA==",
   "success": true,
-  "projectFilePath": "D:\\develop\\Z3950Search-master\\Demo\\Demo.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\Develop\\asp.net C#\\Z3950-Search\\Demo\\Demo.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,20 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "D:\\develop\\Z3950Search-master\\Demo\\Demo.csproj": {}
+    "D:\\Develop\\asp.net C#\\Z3950-Search\\Demo\\Demo.csproj": {}
   },
   "projects": {
-    "D:\\develop\\Z3950Search-master\\Demo\\Demo.csproj": {
+    "D:\\Develop\\asp.net C#\\Z3950-Search\\CSharp_MARC\\CSharp_MARC.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Develop\\asp.net C#\\Z3950-Search\\CSharp_MARC\\CSharp_MARC.csproj",
+        "projectName": "CSharp_MARC",
+        "projectPath": "D:\\Develop\\asp.net C#\\Z3950-Search\\CSharp_MARC\\CSharp_MARC.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "D:\\Develop\\asp.net C#\\Z3950-Search\\Demo\\Demo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\develop\\Z3950Search-master\\Demo\\Demo.csproj",
+        "projectUniqueName": "D:\\Develop\\asp.net C#\\Z3950-Search\\Demo\\Demo.csproj",
         "projectName": "Demo",
-        "projectPath": "D:\\develop\\Z3950Search-master\\Demo\\Demo.csproj",
-        "packagesPath": "C:\\Users\\pvthang\\.nuget\\packages\\",
-        "outputPath": "D:\\develop\\Z3950Search-master\\Demo\\obj\\",
+        "projectPath": "D:\\Develop\\asp.net C#\\Z3950-Search\\Demo\\Demo.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Develop\\asp.net C#\\Z3950-Search\\Demo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pvthang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,7 +42,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Develop\\asp.net C#\\Z3950-Search\\CSharp_MARC\\CSharp_MARC.csproj": {
+                "projectPath": "D:\\Develop\\asp.net C#\\Z3950-Search\\CSharp_MARC\\CSharp_MARC.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -39,6 +58,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -55,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

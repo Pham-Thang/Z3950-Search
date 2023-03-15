@@ -19,3 +19,27 @@ D:\develop\Z3950Search-master\Demo\obj\Debug\net6.0\refint\Demo.dll
 D:\develop\Z3950Search-master\Demo\obj\Debug\net6.0\Demo.pdb
 D:\develop\Z3950Search-master\Demo\obj\Debug\net6.0\Demo.genruntimeconfig.cache
 D:\develop\Z3950Search-master\Demo\obj\Debug\net6.0\ref\Demo.dll
+D:\Develop\asp.net C#\Z3950-Search\Demo\obj\Debug\net6.0\Demo.csproj.AssemblyReference.cache
+D:\Develop\asp.net C#\Z3950-Search\Demo\obj\Debug\net6.0\Demo.GeneratedMSBuildEditorConfig.editorconfig
+D:\Develop\asp.net C#\Z3950-Search\Demo\obj\Debug\net6.0\Demo.AssemblyInfoInputs.cache
+D:\Develop\asp.net C#\Z3950-Search\Demo\obj\Debug\net6.0\Demo.AssemblyInfo.cs
+D:\Develop\asp.net C#\Z3950-Search\Demo\obj\Debug\net6.0\Demo.csproj.CoreCompileInputs.cache
+D:\Develop\asp.net C#\Z3950-Search\Demo\obj\Debug\net6.0\Demo.dll
+D:\Develop\asp.net C#\Z3950-Search\Demo\obj\Debug\net6.0\refint\Demo.dll
+D:\Develop\asp.net C#\Z3950-Search\Demo\obj\Debug\net6.0\Demo.pdb
+D:\Develop\asp.net C#\Z3950-Search\Demo\bin\Debug\net6.0\Demo.exe
+D:\Develop\asp.net C#\Z3950-Search\Demo\bin\Debug\net6.0\Demo.deps.json
+D:\Develop\asp.net C#\Z3950-Search\Demo\bin\Debug\net6.0\Demo.runtimeconfig.json
+D:\Develop\asp.net C#\Z3950-Search\Demo\bin\Debug\net6.0\Demo.dll
+D:\Develop\asp.net C#\Z3950-Search\Demo\bin\Debug\net6.0\Demo.pdb
+D:\Develop\asp.net C#\Z3950-Search\Demo\bin\Debug\net6.0\Zoom.Net.dll
+D:\Develop\asp.net C#\Z3950-Search\Demo\bin\Debug\net6.0\Zoom.Net.YazSharp.dll
+D:\Develop\asp.net C#\Z3950-Search\Demo\bin\Debug\net6.0\Zoom.Net.pdb
+D:\Develop\asp.net C#\Z3950-Search\Demo\bin\Debug\net6.0\Zoom.Net.xml
+D:\Develop\asp.net C#\Z3950-Search\Demo\bin\Debug\net6.0\Zoom.Net.YazSharp.pdb
+D:\Develop\asp.net C#\Z3950-Search\Demo\obj\Debug\net6.0\Demo.csproj.CopyComplete
+D:\Develop\asp.net C#\Z3950-Search\Demo\obj\Debug\net6.0\Demo.genruntimeconfig.cache
+D:\Develop\asp.net C#\Z3950-Search\Demo\obj\Debug\net6.0\ref\Demo.dll
+D:\Develop\asp.net C#\Z3950-Search\Demo\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Develop\asp.net C#\Z3950-Search\Demo\bin\Debug\net6.0\CSharp_MARC.dll
+D:\Develop\asp.net C#\Z3950-Search\Demo\bin\Debug\net6.0\CSharp_MARC.pdb
