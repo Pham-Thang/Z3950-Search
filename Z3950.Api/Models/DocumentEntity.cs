@@ -11,7 +11,7 @@ namespace Z3950.Api.Models
     /// Demo document
     /// </summary>
     /// https://nlv.gov.vn/tai-lieu-nghiep-vu/xml-metadata-va-dublin-core-metadata.html?fbclid=IwAR3Ue8AGaMoxxQ5AywaT7wNGA6IkZCTHw-SVChRP1Ks6JMiy5aBK261VEKs
-    /// https://www.loc.gov/marc/dccross_199911.html
+    /// Cần sửa lại theo tài liệu https://www.loc.gov/marc/dccross_199911.html
     public class DocumentEntity
     {
         [MARCField("245", 'a')]
