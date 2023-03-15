@@ -6,14 +6,14 @@ namespace Z3950.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SearchingController : ControllerBase
+    public class SearchController : ControllerBase
     {
-        private readonly ILogger<SearchingController> _logger;
+        private readonly ILogger<SearchController> _logger;
         private readonly IZ3950Service _z3950Service;
         private readonly IMARCXmlReader _mARCXmlReader;
 
-        public SearchingController(
-            ILogger<SearchingController> logger, 
+        public SearchController(
+            ILogger<SearchController> logger, 
             IZ3950Service z3950Service, 
             IMARCXmlReader mARCXmlReader)
         {
