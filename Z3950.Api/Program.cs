@@ -11,6 +11,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IZ3950Service, Z3950Service>();
 builder.Services.AddScoped<IMARCXmlReader, MARCXmlReader>();
+builder.Services.AddScoped<IPrintService, PrintService>();
 
 var app = builder.Build();
 

@@ -52,12 +52,20 @@ namespace Z3950.Api.Services
                 {
                     var prop = item.Key;
                     var attr = item.Value;
-                    var values = ((DataField)(record)[attr.Tag])?.GetSubfields(attr.Code);
-                    var value = values?.FirstOrDefault()?.Data;
-                    if (value != null)
+                    var subfields = ((DataField)(record)[attr.Tag])?.GetSubfields(attr.Code);
+                    var value = new StringBuilder();
+                    if (subfields != null)
                     {
-                        prop.SetValue(model, value);
+                        if (subfields.Count > 1)
+                        {
+                            Console.WriteLine("");
+                        }
+                        foreach (var subfield in subfields)
+                        {
+                            value.Append(subfield.Data);
+                        }
                     }
+                    prop.SetValue(model, value.ToString());
                 }
                 models.Add(model);
             }

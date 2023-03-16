@@ -34,7 +34,7 @@ cnn.Connect();
 // Language
 
 //var query = "Title=\"thang\" OR Creator=\"p\" OR Subject=\"p\" OR Description=\"p\" OR Publisher=\"p\" OR Identifier=\"p\"";
-var query = "Title=\"Canberra\"";
+var query = $"Creator=null";
 //Create the object for query. 
 CQLQuery q = new CQLQuery(query);
 IResultSet results;
@@ -42,44 +42,44 @@ IResultSet results;
 results = (ResultSet)cnn.Search(q);
 // Now iterate through to the results and get the xml of each record fetched and derive from it the needed values.
 var reader = new FileMARCXML();
-for (uint i = 0; i < results.Size; i++)
-{
-    string temp = Encoding.UTF8.GetString(results[i].Content);
-    //This string is having the xml in string format. Convert it into the xml via XmlDocument
-    XmlDocument doc = new XmlDocument();
-    doc.LoadXml(temp);
-    //perform the needful operations
-    //............... 
-    //...............
-    //............... 
-    Console.WriteLine("-------------------");
-    Console.WriteLine(doc.InnerXml);
+//for (uint i = 0; i < results.Size; i++)
+//{
+//    string temp = Encoding.UTF8.GetString(results[i].Content);
+//    //This string is having the xml in string format. Convert it into the xml via XmlDocument
+//    XmlDocument doc = new XmlDocument();
+//    doc.LoadXml(temp);
+//    //perform the needful operations
+//    //............... 
+//    //...............
+//    //............... 
+//    Console.WriteLine("-------------------");
+//    Console.WriteLine(doc.InnerXml);
 
-    reader.Add(doc.InnerXml);
-}
-var properties = typeof(DocumentEntity).GetProperties();
-var dic = new Dictionary<PropertyInfo, MARCFieldAttribute>();
-foreach (var prop in properties)
-{
-    var marcFieldAttr = prop.GetCustomAttribute<MARCFieldAttribute>();
-    if (marcFieldAttr != null)
-    {
-        dic.Add(prop, marcFieldAttr);
-    }
-}
+//    reader.Add(doc.InnerXml);
+//}
+//var properties = typeof(DocumentEntity).GetProperties();
+//var dic = new Dictionary<PropertyInfo, MARCFieldAttribute>();
+//foreach (var prop in properties)
+//{
+//    var marcFieldAttr = prop.GetCustomAttribute<MARCFieldAttribute>();
+//    if (marcFieldAttr != null)
+//    {
+//        dic.Add(prop, marcFieldAttr);
+//    }
+//}
 
-var models = new List<DocumentEntity>();
-for (int i = 0; i < reader.Count; i++)
-{
-    var record = reader[i];
-    var model = new DocumentEntity();
-    foreach (var item in dic)
-    {
-        var prop = item.Key;
-        var attr = item.Value;
-        var value = ((DataField)(record)[attr.Tag])?.GetSubfields(attr.Char)?.FirstOrDefault()?.Data;
-        prop.SetValue(model, value);
-    }
-    models.Add(model);
-}
-Console.WriteLine(models);
+//var models = new List<DocumentEntity>();
+//for (int i = 0; i < reader.Count; i++)
+//{
+//    var record = reader[i];
+//    var model = new DocumentEntity();
+//    foreach (var item in dic)
+//    {
+//        var prop = item.Key;
+//        var attr = item.Value;
+//        var value = ((DataField)(record)[attr.Tag])?.GetSubfields(attr.Char)?.FirstOrDefault()?.Data;
+//        prop.SetValue(model, value);
+//    }
+//    models.Add(model);
+//}
+//Console.WriteLine(models);

@@ -9,7 +9,7 @@ namespace Z3950.Api.Attrs
 {
     public class MARCFieldAttribute : Attribute
     {
-        private static Regex SyntaxRegex = new Regex(@"[0-9]{3} (#|[0-9]){2}\$[a-z]");
+        private static Regex SyntaxRegex = new Regex(@"[0-9]{3} (#|[0-9]){2}\$([a-z]|[0-9])");
         private string _tag;
         private char _indicator1;
         private char _indicator2;
@@ -27,7 +27,7 @@ namespace Z3950.Api.Attrs
         {
             if (!ValidateField(field))
             {
-                throw new ArgumentException($"{nameof(field)} invalid syntax");
+                throw new ArgumentException($"{nameof(field)} {field} invalid syntax");
             }
             var parts = field.Split(' ');
             _tag = parts[0];

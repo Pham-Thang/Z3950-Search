@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,128 +15,140 @@ namespace Z3950.Api.Models
     /// Cần sửa lại theo tài liệu https://www.loc.gov/marc/dccross_199911.html
     public class DocumentEntity
     {
-        [MARCField("245", 'a')]
+
+        [MARCField("020 ##$a")]
+        [FieldName("ISBN")]
+        public string ISBN { get; set; }
+
+        [MARCField("020 ##$c")]
+        [FieldName("Giá bìa")]
+        public string Price { get; set; }
+
+        [MARCField("020 ##$d")]
+        public string Field_020d { get; set; }
+
+
+        [MARCField("041 0#$a")]
+        [FieldName("Ngôn ngữ")]
+        public string Language { get; set; }
+
+
+        [MARCField("082 04$2")]
+        public string Field_0822 { get; set; }
+        [MARCField("082 04$a")]
+        public string Field_082a { get; set; }
+        [MARCField("082 04$b")]
+        public string Field_082b { get; set; }
+
+
+        [MARCField("245 00$a")]
+        [FieldName("Tiêu đề")]
         public string Title { get; set; }
+        [MARCField("245 00$b")]
+        [FieldName("Tiêu đề phụ")]
+        public string SubTitle { get; set; }
+        [MARCField("245 00$c")]
+        [FieldName("Author")]
+        public string Author { get; set; }
+        [MARCField("245 00$n")]
+        [FieldName("Phần")]
+        public string Volume { get; set; }
+        [MARCField("245 00$p")]
+        public string Field_245p { get; set; }
 
 
-        public string Creator { get; set; }
+        [MARCField("260 ##$a")]
+        [FieldName("Nơi XB")]
+        public string Publisher_Place { get; set; }
+        [MARCField("260 ##$b")]
+        [FieldName("Nhà XB")]
+        public string Publisher_Name { get; set; }
+        [MARCField("260 ##$c")]
+        [FieldName("Năm XB")]
+        public string Publisher_Time { get; set; }
 
-        [MARCField("700", 'a')]
-        public string PersonalCreator { get; set; }
 
-        [MARCField("700", 'a')]
-        public string CollectiveCreator { get; set; }
+        [FieldName("Mô tả vật lý")]
+        public string Physical { get {
+                return Physical_NumberPage + " - " + Physical_Des + " - " + Physical_Size;
+            } }
+        [MARCField("300 ##$a")]
+        public string Physical_NumberPage { get; set; }
+        [MARCField("300 ##$b")]
+        public string Physical_Des { get; set; }
+        [MARCField("300 ##$c")]
+        public string Physical_Size { get; set; }
 
-        [MARCField("711", 'a')]
-        public string Conferences { get; set; }
+
+        [MARCField("504 ##$c")]
+        public string Field_504c { get; set; }
 
 
+        [MARCField("520 ##$a")]
+        [FieldName("Mô tả")]
+        public string Description { get; set; }
+
+
+        [MARCField("605 #7$2")]
+        [FieldName("Nguồn gốc chủ đề")]
+        public string Subject_Source { get; set; }
+        [MARCField("605 #7$a")]
+        [FieldName("Chủ đề")]
         public string Subject { get; set; }
 
-        [MARCField("653", 'a')]
-        public string ControllableSubject { get; set; }
 
-        [MARCField("650", 'a')]
-        public string UncontrollableSubject { get; set; }
-
-
-        public string Description { get; set; }
-        [MARCField("520", 'a')]
-        public string SummaryDescription { get; set; }
-        [MARCField("505", 'a')]
-        public string NoteDescription { get; set; }
+        [MARCField("653 ##$a")]
+        [FieldName("Chủ đề không được kiểm soát")]
+        public string Subject_Uncontrollable { get; set; }
 
 
-        [MARCField("260", 'b')]
-        public string Publisher { get; set; }
-
-        /// <summary>
-        /// Added Entry--Uncontrolled Name/Name
-        /// </summary>
-        [MARCField("720 ##$a")]
-        public string ContributorName { get; set; }
-        /// <summary>
-        /// Added Entry--Personal Name
-        /// </summary>
-        [MARCField("700 1#$a")]
-        public string Contributor_Personal { get; set; }
-        /// <summary>
-        /// Added Entry--Corporate Name
-        /// </summary>
-        [MARCField("720 ##$e")]
-        public string Contributor_Corporate { get; set; }
-        /// <summary>
-        /// Added Entry--Conference Name
-        /// </summary>
-        [MARCField("720 ##$e")]
-        public string ContributorConference { get; set; }
-        [MARCField("720 ##$e")]
-        public string Contributor_Role { get; set; }
-
-
-        [MARCField("260", 'g')]
-        public string Date { get; set; }
-
-
-        //[MARCField("655", '')]
+        [MARCField("655 #7$a")]
+        [FieldName("Phân loại")]
         public string Type { get; set; }
+        [MARCField("655 #7$2")]
+        [FieldName("Nguồn gốc phân loại")]
+        public string Type_Source { get; set; }
 
 
-        public string Format { get; set; }
-        [MARCField("856", 'q')]
-        public string Location { get; set; }
-        [MARCField("300", 'a')]
-        public string PhysicalDescription { get; set; }
+        [MARCField("700 1#$a")]
+        [FieldName("Tác giả - cá nhân")]
+        public string Creator_Personal { get; set; }
+        [MARCField("700 1#$2")]
+        [FieldName("Vai trò Tác giả - cá nhân")]
+        public string Creator_Personal_Role { get; set; }
+        [MARCField("710 1#$a")]
+        [FieldName("Tác giả - tập thể")]
+        public string Creator_Corporate { get; set; }
+        [MARCField("710 1#$2")]
+        [FieldName("Vai trò tác giả - tập thể")]
+        public string Creator_Corporate_Role { get; set; }
+        [MARCField("711 1#$a")]
+        [FieldName("Tác giả - Hội thảo, hội nghị")]
+        public string Creator_Conference { get; set; }
+        [MARCField("711 1#$2")]
+        [FieldName("Vai trò tác giả - Hội thảo, hội nghị")]
+        public string Creator_Conference_Role { get; set; }
 
 
-        public string Identifier { get; set; }
-        [MARCField("024", 'a')]
-        public string Identifier_Other { get; set; }
-        [MARCField("856", 'u')]
-        public string Identifier_URI { get; set; }
-        [MARCField("020", 'a')]
-        public string Identifier_ISBN { get; set; }
-        [MARCField("022", 'a')]
-        public string Identifier_ISSN { get; set; }
+        [MARCField("773 ##$d")]
+        public string Field_773d{ get; set; }
+        [MARCField("773 ##$t")]
+        [FieldName("<chưa xác định>")]
+        public string Field_773t { get; set; }
+        [MARCField("773 ##$w")]
+        public string Field_773w { get; set; }
 
 
-
-        [MARCField("786", 'o')]
-        public string Source { get; set; }
-
-
-        public string Language { get; set; }
-        [MARCField("546", 'a')]
-        public string Language_Sub { get; set; }
-        [MARCField("041", 'a')]
-        public string Language_ISO { get; set; }
+        [MARCField("930 ##$a")]
+        [FieldName("Số thứ tự")]
+        public string SortOrder { get; set; }
+        [MARCField("930 ##$b")]
+        public string Field_930b { get; set; }
 
 
-        public string Relation { get; set; }
-        [MARCField("787", 'u')]
-        public string Relation_Sub { get; set; }
-        [MARCField("787", 'o')]
-        public string Relation_Other { get; set; }
-        [MARCField("776", 'u')]
-        public string Relation_PhySub { get; set; }
-        [MARCField("776", 'o')]
-        public string Relation_PhyOther { get; set; }
-
-
-        public string Coverage { get; set; }
-        [MARCField("500", 'a')]
-        public string Coverage_Common { get; set; }
-        [MARCField("522", 'a')]
-        public string Coverage_Space { get; set; }
-        [MARCField("513", 'a')]
-        public string Coverage_Time { get; set; }
-
-
-        public string Rights { get; set; }
-        [MARCField("540", 'a')]
-        public string Rights_Condition { get; set; }
-        [MARCField("865", 'a')]
-        public string Rights_Online { get; set; }
-
+        [MARCField("941 ##$a")]
+        public string Field_941a { get; set; }
+        [MARCField("941 ##$b")]
+        public string Field_941b { get; set; }
     }
 }

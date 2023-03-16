@@ -54,6 +54,23 @@ namespace Z3950.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet("title/{queryText}/{skip}/{limit}")]
+        public IActionResult Paging(string queryText, int skip, int limit)
+        {
+            var searchParam = new SearchParam()
+            {
+                Title = queryText
+            };
+            var (marcxmls, total) = _z3950Service.Paging(searchParam, skip, limit);
+            var result = _mARCXmlReader.ReadMARCXmlStrings<DocumentEntity>(marcxmls);
+            return Ok(new
+            {
+                total,
+                marcxmls,
+                docs = result,
+            });
+        }
+
         [HttpGet("title/{queryText}/marcxmlstring")]
         public IActionResult GetMARCXmlStringByTitle(string queryText)
         {
