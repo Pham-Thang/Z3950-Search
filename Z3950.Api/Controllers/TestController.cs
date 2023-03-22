@@ -36,7 +36,7 @@ namespace Z3950.Api.Controllers
 
             var marcxmls = MARCXmlString.List.Skip(skip).Take(take).ToList();
 
-            var docs = _mARCXmlReader.ReadMARCXmlStrings<DocumentEntity>(marcxmls);
+            var docs = _mARCXmlReader.ReadMARCXmlStrings<BookEntity>(marcxmls);
 
             return Ok(docs);
         }
@@ -52,7 +52,7 @@ namespace Z3950.Api.Controllers
 
             var marcxmls = MARCXmlString.List.Skip(skip).Take(take).ToList();
 
-            var docs = _mARCXmlReader.ReadMARCXmlStrings<DocumentEntity>(marcxmls);
+            var docs = _mARCXmlReader.ReadMARCXmlStrings<BookEntity>(marcxmls);
 
             var isSuccess = _printService.Print(data: docs, filePath: @"D:\docs.csv");
 
@@ -68,7 +68,7 @@ namespace Z3950.Api.Controllers
             };
             var marcxmls = _z3950Service.Search(searchParam);
 
-            var docs = _mARCXmlReader.ReadMARCXmlStrings<DocumentEntity>(marcxmls);
+            var docs = _mARCXmlReader.ReadMARCXmlStrings<BookEntity>(marcxmls);
 
             var isSuccess = _printService.Print(data: docs, filePath: @"D:\docs.csv");
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using MARC;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,80 +14,174 @@ namespace Z3950.Api.Models
     /// </summary>
     /// https://nlv.gov.vn/tai-lieu-nghiep-vu/xml-metadata-va-dublin-core-metadata.html?fbclid=IwAR3Ue8AGaMoxxQ5AywaT7wNGA6IkZCTHw-SVChRP1Ks6JMiy5aBK261VEKs
     /// Cần sửa lại theo tài liệu https://www.loc.gov/marc/dccross_199911.html
-    public class DocumentEntity
+    /// https://nlv.gov.vn/tai-lieu-nghiep-vu/ung-dung-marc21-tai-thu-vien-quoc-gia-viet-nam.html
+    public class BookEntity
     {
+        /// <summary>
+        /// Đầu biểu, 24 ký tự, đóng vai trò như Id
+        /// </summary>
+        public string Leader { get; set; }
+
+        #region "0XX - Thông tin kiểm soát, định danh, chỉ số phân loại, v.v."
+
+        #region "001 - 006 CÁC TRƯỜNG KIỂM SOÁT"
+        ///// <summary>
+        ///// 001   SỐ KIỂM SOÁT (KL)
+        ///// </summary>
+        //public string ControlNumber { get; set; }
+        ///// <summary>
+        ///// 003   MÃ CƠ QUAN GÁN SỐ KIỂM SOÁT (KL)
+        ///// </summary>
+        //public string CodeOfControlNumberAssignmentAgency { get; set; }
+        ///// <summary>
+        ///// 005   NGÀY VÀ THỜI GIAN GIAO DỊCH LẦN CUỐI VỚI BIỂU GHI (KL)
+        ///// 16 ký tự
+        ///// Ex: 1994023151047.0 => ngày 31 tháng 2 năm 1994, 15giờ 10 phút 47 giây
+        ///// </summary>
+        //public string ModifiedDate { get; set; }
+        ///// <summary>
+        ///// 006   YẾU TỐ DỮ LIỆU CÓ ĐỘ DÀI CỐ ĐỊNH - ĐẶC TRƯNG TÀI LIỆU BỔ SUNG (L)
+        ///// </summary>
+        //public string FeatureAdditionalDocumentation { get; set; }
+        #endregion
+
+        ///// <summary>
+        ///// 007   TRƯỜNG MÔ TẢ VẬT LÝ CÓ ĐỘ DÀI CỐ ĐỊNH - THÔNG TIN CHUNG (L)
+        ///// https://nlv.gov.vn/images/documents/marc21/007.htm
+        ///// </summary>
+        //public string Field_007 { get; set; }
+        ///// <summary>
+        ///// 008   CÁC YẾU TỐ DỮ LIỆU CÓ ĐỘ DÀI CỐ ĐỊNH (KL)
+        ///// https://nlv.gov.vn/images/documents/marc21/008.htm
+        ///// </summary>
+        //public string Field_008 { get; set; }
 
         [MARCField("020 ##$a")]
         [FieldName("ISBN")]
         public string ISBN { get; set; }
 
         [MARCField("020 ##$c")]
-        [FieldName("Giá bìa")]
+        [FieldName("Giá tiền")]
         public string Price { get; set; }
 
         [MARCField("020 ##$d")]
-        public string Field_020d { get; set; }
+        [FieldName("Số lượng bản")]
+        public string NumberOfBook { get; set; }
 
 
         [MARCField("041 0#$a")]
-        [FieldName("Ngôn ngữ")]
-        public string Language { get; set; }
+        [FieldName("Mã ngôn ngữ")]
+        public string LanguageCode { get; set; }
 
 
-        [MARCField("082 04$2")]
-        public string Field_0822 { get; set; }
-        [MARCField("082 04$a")]
-        public string Field_082a { get; set; }
-        [MARCField("082 04$b")]
-        public string Field_082b { get; set; }
+        [MARCField("084 ##$a")]
+        [FieldName("Ký hiệu phân loại")]
+        public string ClassifyCode { get; set; }
+        [MARCField("084 ##$b")]
+        [FieldName("Chỉ số cutter (mã cutter theo tên sách)")]
+        public string CutterCode { get; set; }
+        [MARCField("084 ##$2")]
+        [FieldName("Nguồn phân loại")]
+        public string ClassifySource { get; set; }
+        #endregion
 
+        #region "1XX - Tiêu đề chính"
+        [MARCField("110   $2")]
+        [FieldName("Tác giả tập thể")]
+        public string CollectiveAuthor { get; set; }
+        #endregion
+
+        #region "2XX - Nhan đề và thông tin liên quan đến nhan đề(nhan đề, lần xuất bản, thông tin về in ấn)"
+        [MARCField("242   $a")]
+        [FieldName("Dịch tên sách")]
+        public string TitleTranslate { get; set; }
 
         [MARCField("245 00$a")]
-        [FieldName("Tiêu đề")]
+        [FieldName("Tên sách")]
         public string Title { get; set; }
         [MARCField("245 00$b")]
-        [FieldName("Tiêu đề phụ")]
+        [FieldName("Phụ đề")]
         public string SubTitle { get; set; }
         [MARCField("245 00$c")]
-        [FieldName("Author")]
-        public string Author { get; set; }
+        [FieldName("Thông tin về trách nhiệm")]
+        public string ResponsibilityInformation { get; set; }
         [MARCField("245 00$n")]
         [FieldName("Phần")]
-        public string Volume { get; set; }
-        [MARCField("245 00$p")]
-        public string Field_245p { get; set; }
+        public string Serial { get; set; }
+        //[MARCField("245 00$p")]
+        //public string Field_245p { get; set; }
 
 
         [MARCField("260 ##$a")]
-        [FieldName("Nơi XB")]
+        [FieldName("Nơi xuất bản")]
         public string Publisher_Place { get; set; }
         [MARCField("260 ##$b")]
-        [FieldName("Nhà XB")]
+        [FieldName("Nhà xuất bản")]
         public string Publisher_Name { get; set; }
         [MARCField("260 ##$c")]
-        [FieldName("Năm XB")]
-        public string Publisher_Time { get; set; }
+        [FieldName("Năm xuất bản")]
+        public string Publisher_Year { get; set; }
+        #endregion
 
-
-        [FieldName("Mô tả vật lý")]
-        public string Physical { get {
-                return Physical_NumberPage + " - " + Physical_Des + " - " + Physical_Size;
-            } }
+        #region "3XX - Mô tả vật lý, v.v."
+        //[FieldName("Mô tả vật lý")]
+        //public string Physical { get {
+        //        return Physical_NumberPage + " - " + Physical_Des + " - " + Physical_Size;
+        //    } }
         [MARCField("300 ##$a")]
-        public string Physical_NumberPage { get; set; }
+        [FieldName("Số trang")]
+        public string NumberPage { get; set; }
         [MARCField("300 ##$b")]
-        public string Physical_Des { get; set; }
+        [FieldName("Các chi tiết vật lí khác")]
+        public string OtherPhysical { get; set; }
         [MARCField("300 ##$c")]
-        public string Physical_Size { get; set; }
+        [FieldName("Kích thước")]
+        public string Size { get; set; }
+        [MARCField("300 ##$e")]
+        [FieldName("Tài liệu kèm theo")]
+        public string AttachmentDocument { get; set; }
+        #endregion
 
+        #region "4XX - Thông báo về tùng thư"
+        [MARCField("490 ##$a")]
+        [FieldName("Thông tin về tùng thư")]
+        public string Tungthu_Infomation { get; set; }
+        [MARCField("490 ##$v")]
+        [FieldName("Số thứ tự tập")]
+        public string Tungthu_PartSerial { get; set; }
+        #endregion
+
+        #region "5XX - Chú giải"
+        [MARCField("500 ##$c")]
+        [FieldName("Phụ chú chung")]
+        public string GeneralNote { get; set; }
 
         [MARCField("504 ##$c")]
-        public string Field_504c { get; set; }
+        [FieldName("Phụ chú thư mục")]
+        public string FolderNote { get; set; }
 
 
         [MARCField("520 ##$a")]
-        [FieldName("Mô tả")]
+        [FieldName("Tóm tắt")]
         public string Description { get; set; }
+        #endregion
+
+        #region "6XX - Các trường về truy cập chủ đề"
+        [MARCField("600 #7$a")]
+        [FieldName("Nhân vật - Họ và tên")]
+        public string Character_FullName { get; set; }
+        [MARCField("600 #7$c")]
+        [FieldName("Nhân vật - Chức danh")]
+        public string Character_Position { get; set; }
+        [MARCField("600 #7$a")]
+        [FieldName("Nhân vật - Năm sinh năm mất")]
+        public string Character_NSNM { get; set; }
+        [MARCField("600 #7$a")]
+        [FieldName("Nhân vật - Địa lý")]
+        public string Character_Dialy { get; set; }
+        [MARCField("600 #7$a")]
+        [FieldName("Nhân vật - Nguồn")]
+        public string Character_Source { get; set; }
 
 
         [MARCField("605 #7$2")]
@@ -94,7 +189,7 @@ namespace Z3950.Api.Models
         public string Subject_Source { get; set; }
         [MARCField("605 #7$a")]
         [FieldName("Chủ đề")]
-        public string Subject { get; set; }
+        public string Subject_Name { get; set; }
 
 
         [MARCField("653 ##$a")]
@@ -108,8 +203,9 @@ namespace Z3950.Api.Models
         [MARCField("655 #7$2")]
         [FieldName("Nguồn gốc phân loại")]
         public string Type_Source { get; set; }
+        #endregion
 
-
+        #region "7XX - Tiêu đề bổ sung, không phải chủ đề hoặc tùng thư; trường liên kết"
         [MARCField("700 1#$a")]
         [FieldName("Tác giả - cá nhân")]
         public string Creator_Personal { get; set; }
@@ -130,25 +226,31 @@ namespace Z3950.Api.Models
         public string Creator_Conference_Role { get; set; }
 
 
-        [MARCField("773 ##$d")]
-        public string Field_773d{ get; set; }
-        [MARCField("773 ##$t")]
-        [FieldName("<chưa xác định>")]
-        public string Field_773t { get; set; }
-        [MARCField("773 ##$w")]
-        public string Field_773w { get; set; }
+        //[MARCField("773 ##$d")]
+        //public string Field_773d{ get; set; }
+        //[MARCField("773 ##$t")]
+        //[FieldName("<chưa xác định>")]
+        //public string Field_773t { get; set; }
+        //[MARCField("773 ##$w")]
+        //public string Field_773w { get; set; }
+        #endregion
 
+        #region "8XX - Tiêu đề tùng thư bổ sung, sưu tập, v.v."
 
+        #endregion
+
+        #region "9XX - Dành cho ứng dụng cục bộ"
         [MARCField("930 ##$a")]
         [FieldName("Số thứ tự")]
         public string SortOrder { get; set; }
-        [MARCField("930 ##$b")]
-        public string Field_930b { get; set; }
+        //[MARCField("930 ##$b")]
+        //public string Field_930b { get; set; }
 
 
-        [MARCField("941 ##$a")]
-        public string Field_941a { get; set; }
-        [MARCField("941 ##$b")]
-        public string Field_941b { get; set; }
+        //[MARCField("941 ##$a")]
+        //public string Field_941a { get; set; }
+        //[MARCField("941 ##$b")]
+        //public string Field_941b { get; set; }
+        #endregion
     }
 }

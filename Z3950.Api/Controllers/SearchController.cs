@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Z3950.Api.Models;
 using Z3950.Api.Services;
 
@@ -38,7 +39,7 @@ namespace Z3950.Api.Controllers
                 prop.SetValue(searchParam, queryText);
             }
             var resultSet = _z3950Service.Search(searchParam);
-            var result = _mARCXmlReader.ReadMARCXmlStrings<DocumentEntity>(resultSet);
+            var result = _mARCXmlReader.ReadMARCXmlStrings<BookEntity>(resultSet);
             return Ok(result);
         }
 
@@ -50,25 +51,34 @@ namespace Z3950.Api.Controllers
                 Title = queryText
             };
             var marcxmls = _z3950Service.Search(searchParam);
-            var result = _mARCXmlReader.ReadMARCXmlStrings<DocumentEntity>(marcxmls);
+            var result = _mARCXmlReader.ReadMARCXmlStrings<BookEntity>(marcxmls);
             return Ok(result);
         }
 
-        [HttpGet("title/{queryText}/{skip}/{limit}")]
+        [HttpGet("paging/{queryText}/{skip}/{limit}")]
         public IActionResult Paging(string queryText, int skip, int limit)
         {
-            var searchParam = new SearchParam()
+            try
             {
-                Title = queryText
-            };
-            var (marcxmls, total) = _z3950Service.Paging(searchParam, skip, limit);
-            var result = _mARCXmlReader.ReadMARCXmlStrings<DocumentEntity>(marcxmls);
-            return Ok(new
+                var searchParam = new SearchParam()
+                {
+                    Title = queryText
+                };
+                var (marcxmls, total) = _z3950Service.Paging(searchParam, skip, limit);
+                var result = _mARCXmlReader.ReadMARCXmlStrings<BookEntity>(marcxmls);
+                return Ok(new
+                {
+                    total,
+                    marcxmls,
+                    docs = result,
+                });
+            } catch (Exception ex)
             {
-                total,
-                marcxmls,
-                docs = result,
-            });
+                return Ok(new {
+                    Message = ex.Message,
+                    Data = JsonConvert.SerializeObject(ex),
+                });
+            }
         }
 
         [HttpGet("title/{queryText}/marcxmlstring")]
@@ -86,7 +96,7 @@ namespace Z3950.Api.Controllers
         public IActionResult GetBySearchParam([FromBody] SearchParam searchParam)
         {
             var marcxmls = _z3950Service.Search(searchParam);
-            var result = _mARCXmlReader.ReadMARCXmlStrings<DocumentEntity>(marcxmls);
+            var result = _mARCXmlReader.ReadMARCXmlStrings<BookEntity>(marcxmls);
             return Ok(result);
         }
     }

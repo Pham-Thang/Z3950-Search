@@ -9,7 +9,7 @@ namespace Z3950.Api.Attrs
 {
     public class MARCFieldAttribute : Attribute
     {
-        private static Regex SyntaxRegex = new Regex(@"[0-9]{3} (#|[0-9]){2}\$([a-z]|[0-9])");
+        private static Regex SyntaxRegex = new Regex(@"[0-9]{3} ( |#|[0-9]){2}\$([a-z]|[0-9])");
         private string _tag;
         private char _indicator1;
         private char _indicator2;

@@ -103,7 +103,7 @@ namespace Z3950.Api.Services
                     return count;
                 }
                 Encoding encoding = Encoding.UTF8; //Or any other Encoding
-                var fields = _printService.GetFields(typeof(DocumentEntity));
+                var fields = _printService.GetFields(typeof(BookEntity));
                 var rowFormat = new List<string>();
 
                 var titles = new List<string>();
@@ -125,7 +125,7 @@ namespace Z3950.Api.Services
                             string content = Encoding.UTF8.GetString(queryResults[i].Content);
                             if (!string.IsNullOrEmpty(content))
                             {
-                                var model = _mxmlReader.ReadMARCXmlStrings<DocumentEntity>(new List<string> { content }).FirstOrDefault();
+                                var model = _mxmlReader.ReadMARCXmlStrings<BookEntity>(new List<string> { content }).FirstOrDefault();
 
                                 if (model == null)
                                 {
