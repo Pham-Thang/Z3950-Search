@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Z3950.Api.DataFake;
 using Z3950.Api.Models;
 using Z3950.Api.Services;
@@ -85,6 +86,38 @@ namespace Z3950.Api.Controllers
             var num = _z3950Service.SearchAndPrint(searchParam);
 
             return Ok(num);
+        }
+
+        [HttpGet("paging/print/{queryText}/{skip}/{limit}")]
+        public async Task<IActionResult> PrintPaging(string queryText, int skip, int limit)
+        {
+            try
+            {
+                var searchParam = new SearchParam()
+                {
+                    Title = queryText,
+                };
+                var (marcxmls, total) = _z3950Service.Paging(searchParam, skip, limit);
+
+                var docs = _mARCXmlReader.ReadMARCXmlStrings<BookEntity>(marcxmls);
+
+                var isSuccess = _printService.Print(data: docs, filePath: $"D:\\{queryText} - skip {skip} - limit {limit}.csv");
+
+                return Ok(new
+                {
+                    total,
+                    marcxmls,
+                    docs = docs,
+                });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new
+                {
+                    Message = ex.Message,
+                    Data = JsonConvert.SerializeObject(ex),
+                });
+            }
         }
     }
 }

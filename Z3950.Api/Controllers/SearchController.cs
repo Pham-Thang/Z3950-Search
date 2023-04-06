@@ -81,6 +81,30 @@ namespace Z3950.Api.Controllers
             }
         }
 
+        [HttpPost("paging/{skip}/{limit}")]
+        public IActionResult Paging([FromBody] SearchParam searchParam, int skip, int limit)
+        {
+            try
+            {
+                var (marcxmls, total) = _z3950Service.Paging(searchParam, skip, limit);
+                var result = _mARCXmlReader.ReadMARCXmlStrings<BookEntity>(marcxmls);
+                return Ok(new
+                {
+                    total,
+                    marcxmls,
+                    docs = result,
+                });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new
+                {
+                    Message = ex.Message,
+                    Data = JsonConvert.SerializeObject(ex),
+                });
+            }
+        }
+
         [HttpGet("title/{queryText}/marcxmlstring")]
         public IActionResult GetMARCXmlStringByTitle(string queryText)
         {

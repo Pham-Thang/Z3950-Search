@@ -6,6 +6,7 @@ using System.Text;
 using MARC;
 using System.Text.Encodings.Web;
 using Microsoft.Extensions.Logging.Abstractions;
+using System.Web;
 
 namespace Z3950.Api.Services
 {
@@ -165,17 +166,34 @@ namespace Z3950.Api.Services
                 {
                     if (query.Length != 0)
                     {
-                        query.Append(" OR ");
+                        query.Append(" AND ");
                     }
-                    // TODO encode uri
-                    query.Append($"{prop.Name}=\"{value}\"");
+                    query.Append($"{prop.Name} = \"{value}\"");
                 }
             }
+            //if (query.Length > 0)
+            //{
+            //    query.Append(" AND ");
+            //}
+            //query.Append("Language=\"vie\"");
 
             // doc: https://software.indexdata.com/yaz/doc/yaz-client.html#sortspec
-            query.Append(" SORTBY Title < lslb 0 ssub 10 mspn 5");
+            //query.Append(" SORTBY Title <");
 
-            return query.ToString();
+            return query.ToString().ToLower();
+        }
+
+        public object Scan()
+        {
+            IScanSet scanResults;
+            var count = 0;
+            IPrefixQuery query = new PrefixQuery("");
+            using (var cnn = GetConnection())
+            {
+                scanResults = cnn.Scan(query);
+            }
+
+            return null;
         }
 
         private Connection GetOpenConnection()

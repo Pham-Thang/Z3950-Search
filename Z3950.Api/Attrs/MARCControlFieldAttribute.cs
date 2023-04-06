@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Z3950.Api.Attrs
 {
-    public class MARCFieldAttribute : Attribute
+    public class MARCDataFieldAttribute : Attribute
     {
         private static Regex SyntaxRegex = new Regex(@"[0-9]{3} ( |#|[0-9]){2}\$([a-z]|[0-9])");
         private string _tag;
@@ -18,12 +18,12 @@ namespace Z3950.Api.Attrs
         public string Tag => _tag;
         public char Code => _code;
 
-        public MARCFieldAttribute(string tag, char code)
+        public MARCDataFieldAttribute(string tag, char code)
         {
             _tag = tag;
             _code = code;
         }
-        public MARCFieldAttribute(string field)
+        public MARCDataFieldAttribute(string field)
         {
             if (!ValidateField(field))
             {

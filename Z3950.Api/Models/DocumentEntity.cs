@@ -20,6 +20,7 @@ namespace Z3950.Api.Models
         /// <summary>
         /// Đầu biểu, 24 ký tự, đóng vai trò như Id
         /// </summary>
+        [MARCLeaderField]
         public string Leader { get; set; }
 
         #region "0XX - Thông tin kiểm soát, định danh, chỉ số phân loại, v.v."
@@ -56,69 +57,69 @@ namespace Z3950.Api.Models
         ///// </summary>
         //public string Field_008 { get; set; }
 
-        [MARCField("020 ##$a")]
+        [MARCDataField("020 ##$a")]
         [FieldName("ISBN")]
         public string ISBN { get; set; }
 
-        [MARCField("020 ##$c")]
+        [MARCDataField("020 ##$c")]
         [FieldName("Giá tiền")]
         public string Price { get; set; }
 
-        [MARCField("020 ##$d")]
+        [MARCDataField("020 ##$d")]
         [FieldName("Số lượng bản")]
         public string NumberOfBook { get; set; }
 
 
-        [MARCField("041 0#$a")]
+        [MARCDataField("041 0#$a")]
         [FieldName("Mã ngôn ngữ")]
         public string LanguageCode { get; set; }
 
 
-        [MARCField("084 ##$a")]
+        [MARCDataField("084 ##$a")]
         [FieldName("Ký hiệu phân loại")]
         public string ClassifyCode { get; set; }
-        [MARCField("084 ##$b")]
+        [MARCDataField("084 ##$b")]
         [FieldName("Chỉ số cutter (mã cutter theo tên sách)")]
         public string CutterCode { get; set; }
-        [MARCField("084 ##$2")]
+        [MARCDataField("084 ##$2")]
         [FieldName("Nguồn phân loại")]
         public string ClassifySource { get; set; }
         #endregion
 
         #region "1XX - Tiêu đề chính"
-        [MARCField("110   $2")]
+        [MARCDataField("110 ##$2")]
         [FieldName("Tác giả tập thể")]
         public string CollectiveAuthor { get; set; }
         #endregion
 
         #region "2XX - Nhan đề và thông tin liên quan đến nhan đề(nhan đề, lần xuất bản, thông tin về in ấn)"
-        [MARCField("242   $a")]
+        [MARCDataField("242 ##$a")]
         [FieldName("Dịch tên sách")]
         public string TitleTranslate { get; set; }
 
-        [MARCField("245 00$a")]
+        [MARCDataField("245 00$a")]
         [FieldName("Tên sách")]
         public string Title { get; set; }
-        [MARCField("245 00$b")]
+        [MARCDataField("245 00$b")]
         [FieldName("Phụ đề")]
         public string SubTitle { get; set; }
-        [MARCField("245 00$c")]
+        [MARCDataField("245 00$c")]
         [FieldName("Thông tin về trách nhiệm")]
         public string ResponsibilityInformation { get; set; }
-        [MARCField("245 00$n")]
+        [MARCDataField("245 00$n")]
         [FieldName("Phần")]
         public string Serial { get; set; }
         //[MARCField("245 00$p")]
         //public string Field_245p { get; set; }
 
 
-        [MARCField("260 ##$a")]
+        [MARCDataField("260 ##$a")]
         [FieldName("Nơi xuất bản")]
         public string Publisher_Place { get; set; }
-        [MARCField("260 ##$b")]
+        [MARCDataField("260 ##$b")]
         [FieldName("Nhà xuất bản")]
         public string Publisher_Name { get; set; }
-        [MARCField("260 ##$c")]
+        [MARCDataField("260 ##$c")]
         [FieldName("Năm xuất bản")]
         public string Publisher_Year { get; set; }
         #endregion
@@ -128,100 +129,100 @@ namespace Z3950.Api.Models
         //public string Physical { get {
         //        return Physical_NumberPage + " - " + Physical_Des + " - " + Physical_Size;
         //    } }
-        [MARCField("300 ##$a")]
+        [MARCDataField("300 ##$a")]
         [FieldName("Số trang")]
         public string NumberPage { get; set; }
-        [MARCField("300 ##$b")]
+        [MARCDataField("300 ##$b")]
         [FieldName("Các chi tiết vật lí khác")]
         public string OtherPhysical { get; set; }
-        [MARCField("300 ##$c")]
+        [MARCDataField("300 ##$c")]
         [FieldName("Kích thước")]
         public string Size { get; set; }
-        [MARCField("300 ##$e")]
+        [MARCDataField("300 ##$e")]
         [FieldName("Tài liệu kèm theo")]
         public string AttachmentDocument { get; set; }
         #endregion
 
         #region "4XX - Thông báo về tùng thư"
-        [MARCField("490 ##$a")]
+        [MARCDataField("490 ##$a")]
         [FieldName("Thông tin về tùng thư")]
         public string Tungthu_Infomation { get; set; }
-        [MARCField("490 ##$v")]
+        [MARCDataField("490 ##$v")]
         [FieldName("Số thứ tự tập")]
         public string Tungthu_PartSerial { get; set; }
         #endregion
 
         #region "5XX - Chú giải"
-        [MARCField("500 ##$c")]
+        [MARCDataField("500 ##$c")]
         [FieldName("Phụ chú chung")]
         public string GeneralNote { get; set; }
 
-        [MARCField("504 ##$c")]
+        [MARCDataField("504 ##$c")]
         [FieldName("Phụ chú thư mục")]
         public string FolderNote { get; set; }
 
 
-        [MARCField("520 ##$a")]
+        [MARCDataField("520 ##$a")]
         [FieldName("Tóm tắt")]
         public string Description { get; set; }
         #endregion
 
         #region "6XX - Các trường về truy cập chủ đề"
-        [MARCField("600 #7$a")]
+        [MARCDataField("600 #7$a")]
         [FieldName("Nhân vật - Họ và tên")]
         public string Character_FullName { get; set; }
-        [MARCField("600 #7$c")]
+        [MARCDataField("600 #7$c")]
         [FieldName("Nhân vật - Chức danh")]
         public string Character_Position { get; set; }
-        [MARCField("600 #7$a")]
+        [MARCDataField("600 #7$a")]
         [FieldName("Nhân vật - Năm sinh năm mất")]
         public string Character_NSNM { get; set; }
-        [MARCField("600 #7$a")]
+        [MARCDataField("600 #7$a")]
         [FieldName("Nhân vật - Địa lý")]
         public string Character_Dialy { get; set; }
-        [MARCField("600 #7$a")]
+        [MARCDataField("600 #7$a")]
         [FieldName("Nhân vật - Nguồn")]
         public string Character_Source { get; set; }
 
 
-        [MARCField("605 #7$2")]
+        [MARCDataField("605 #7$2")]
         [FieldName("Nguồn gốc chủ đề")]
         public string Subject_Source { get; set; }
-        [MARCField("605 #7$a")]
+        [MARCDataField("605 #7$a")]
         [FieldName("Chủ đề")]
         public string Subject_Name { get; set; }
 
 
-        [MARCField("653 ##$a")]
+        [MARCDataField("653 ##$a")]
         [FieldName("Chủ đề không được kiểm soát")]
         public string Subject_Uncontrollable { get; set; }
 
 
-        [MARCField("655 #7$a")]
+        [MARCDataField("655 #7$a")]
         [FieldName("Phân loại")]
         public string Type { get; set; }
-        [MARCField("655 #7$2")]
+        [MARCDataField("655 #7$2")]
         [FieldName("Nguồn gốc phân loại")]
         public string Type_Source { get; set; }
         #endregion
 
         #region "7XX - Tiêu đề bổ sung, không phải chủ đề hoặc tùng thư; trường liên kết"
-        [MARCField("700 1#$a")]
+        [MARCDataField("700 1#$a")]
         [FieldName("Tác giả - cá nhân")]
         public string Creator_Personal { get; set; }
-        [MARCField("700 1#$2")]
+        [MARCDataField("700 1#$2")]
         [FieldName("Vai trò Tác giả - cá nhân")]
         public string Creator_Personal_Role { get; set; }
-        [MARCField("710 1#$a")]
+        [MARCDataField("710 1#$a")]
         [FieldName("Tác giả - tập thể")]
         public string Creator_Corporate { get; set; }
-        [MARCField("710 1#$2")]
+        [MARCDataField("710 1#$2")]
         [FieldName("Vai trò tác giả - tập thể")]
         public string Creator_Corporate_Role { get; set; }
-        [MARCField("711 1#$a")]
+        [MARCDataField("711 1#$a")]
         [FieldName("Tác giả - Hội thảo, hội nghị")]
         public string Creator_Conference { get; set; }
-        [MARCField("711 1#$2")]
+        [MARCDataField("711 1#$2")]
         [FieldName("Vai trò tác giả - Hội thảo, hội nghị")]
         public string Creator_Conference_Role { get; set; }
 
@@ -240,7 +241,7 @@ namespace Z3950.Api.Models
         #endregion
 
         #region "9XX - Dành cho ứng dụng cục bộ"
-        [MARCField("930 ##$a")]
+        [MARCDataField("930 ##$a")]
         [FieldName("Số thứ tự")]
         public string SortOrder { get; set; }
         //[MARCField("930 ##$b")]

@@ -33,39 +33,46 @@ namespace Z3950.Api.Services
                 reader.Add(doc.InnerXml);
             }
             var properties = typeof(TEntity).GetProperties();
-            var dic = new Dictionary<PropertyInfo, MARCFieldAttribute>();
+            var dic = new Dictionary<PropertyInfo, MARCDataFieldAttribute>();
             foreach (var prop in properties)
             {
-                var marcFieldAttr = prop.GetCustomAttribute<MARCFieldAttribute>();
+                var marcFieldAttr = prop.GetCustomAttribute<MARCDataFieldAttribute>();
                 if (marcFieldAttr != null)
                 {
                     dic.Add(prop, marcFieldAttr);
                 }
             }
+            // Get leader field
+            var leaderProp = properties.FirstOrDefault(x => x.GetCustomAttribute<MARCLeaderFieldAttribute>() != null);
 
             var models = new List<TEntity>();
             for (int i = 0; i < reader.Count; i++)
             {
                 var record = reader[i];
                 var model = (TEntity)Activator.CreateInstance(typeof(TEntity));
-                foreach (var item in dic)
+                leaderProp?.SetValue(model, record.Leader);
+                foreach (var (prop, attr) in dic)
                 {
-                    var prop = item.Key;
-                    var attr = item.Value;
-                    var subfields = ((DataField)(record)[attr.Tag])?.GetSubfields(attr.Code);
-                    var value = new StringBuilder();
-                    if (subfields != null)
+                    var values = new List<string>();
+                    if (record[attr.Tag]?.IsControlField() == true)
                     {
-                        if (subfields.Count > 1)
+                        var field = (ControlField)record[attr.Tag];
+                        values.Add(field.Data);
+                    } 
+                    else if (record[attr.Tag]?.IsDataField() == true)
+                    {
+                        var isList = true;
+                        var fields = record.GetFields(attr.Tag);
+                        foreach (var field in fields)
                         {
-                            Console.WriteLine("");
-                        }
-                        foreach (var subfield in subfields)
-                        {
-                            value.Append(subfield.Data);
+                            var subfields = ((DataField)field).GetSubfields(attr.Code);
+                            foreach (var subfield in subfields)
+                            {
+                                values.Add(subfield.Data);
+                            }
                         }
                     }
-                    prop.SetValue(model, value.ToString());
+                    prop.SetValue(model, string.Join(" --- ", values));
                 }
                 models.Add(model);
             }
