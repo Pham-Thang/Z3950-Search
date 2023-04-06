@@ -1,0 +1,39 @@
+TODO list 
+
+* testing with threading 
+  need to write test cases where syncronous connections to same server 
+  and to different servers are made to check that code is stabile for
+  threading issues.  
+
+* CCL parsing support and CCL->RPN client side converter
+  see 
+  http://www.indexdata.dk/yaz/doc/tools.tkl#tools.query
+  for ideas
+
+* eventually CQL parsing support and CQL->RPN client side converter
+
+* NDoc/Doxygen documentation
+  Essentially, nice HTML source code docs and Windows VS source docs
+  are needed. Ideally, NDoc and/or Doxygen can be used to extract the
+  same source code documentation into HTML and/or Windows VS format.  
+
+  Missing: factories and IPrefixQuery
+
+* MS .NET packaging
+  NSIS (Nullsoft Scriptable Install System) might be a good and easy
+  solution. We have packaged YAZ with it before, and it just works.
+  http://nsis.sourceforge.net/
+
+* GNU/Linux Debian packaging
+  Standard debian package following the 
+  CIL packaging policy
+  http://pkg-mono.alioth.debian.org/cli-policy/index.html
+
+* Check compile on ADM64 platform, there might be a problem with 
+  size_t (64 bit) and uint (32 bit). Might be better to use 
+  UIntPtr in Yaz.cs ?? Seems  to work correctly on ADM 64 Debian
+
+
+CVS DEVELOPER CO
+
+ cvs -z3 -d:ext:developername@zoomdotnet.cvs.sourceforge.net:/cvsroot/zoomdotnet co -P Zoom.Net

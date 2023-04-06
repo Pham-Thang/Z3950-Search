@@ -11,6 +11,7 @@ using Demo.Models;
 using System.Reflection;
 using System.Text.Encodings.Web;
 using System.Web;
+using System.Text.RegularExpressions;
 
 // See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
@@ -34,10 +35,17 @@ cnn.Connect();
 // Language
 
 //var query = "Title=\"thang\" OR Creator=\"p\" OR Subject=\"p\" OR Description=\"p\" OR Publisher=\"p\" OR Identifier=\"p\"";
-var query = $"title=\"kim đồng\" or Publisher=\"2013\" sortby title <"; //  OR Author=\"${HttpUtility.UrlEncode("thang")}\"  AND Publisher=\"Kim Đong\"
-//Create the object for query. 
-var q = new CQLQuery(query.ToLower());
-//var q = new PrefixQuery("Publisher.as=\"H.\"");
+//var query = $"@attr 2=3 @attr 4=1 @attr 3=3 @attr 1=title \"a\""; //  OR Author=\"${HttpUtility.UrlEncode("thang")}\"  AND Publisher=\"Kim Đong\"
+////Create the object for query. 
+//var q = new PrefixQuery(query.ToLower());
+var value = "hó họ";
+// hyphens (-)
+value = value.Replace("- ", " ");
+// ampersand (&) 
+value = value.Replace("& ", " ");
+// slash (/) 
+value = value.Replace("/", " ");
+var q = new PrefixQuery($"title == \"{value}\"");
 IResultSet results;
 //perform search
 results = (ResultSet)cnn.Search(q);

@@ -1,0 +1,72 @@
+ZOOM.NET ON GNU/DEBIAN LINUX VERSION TESTING/UNSTABLE USING MONO
+
+   YAZ
+   Add the following lines to your /etc/apt/sources list 
+
+   deb http://ftp.indexdata.dk/debian indexdata/etch released
+   deb-src http://ftp.indexdata.dk/debian indexdata/etch released
+
+   and install YAZ by issuing
+
+   sudo apt-get install yaz libyaz yaz-doc
+
+   Notice: you need YAZ version  2.1.12-1 or newer. The outdated
+   standard Debian version 2.1.8-4 will not do the trick.
+
+   MONO NUNIT NANT
+   Install from standard Debian packages
+
+   sudo apt-get install mono mono-utils nunit-console nant
+
+
+   ZOOM.NET
+   Fetch zip archive from http://sourceforge.net/projects/zoomdotnet
+   and unzip, or fetch CVS version by issuing
+
+   cvs -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/zoomdotnet login
+   cvs -z3
+         -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/zoomdotnet 
+          co -P Zoom.Net
+
+   cd Zoom.Net
+
+   set environmental variables for MONO to get correct DLL load pathes
+   source  mono.sh 
+
+   build and check
+   nant
+   nant check
+
+
+   EMACS
+   emacs users migh want to check out some of the suggestions from 
+   http://www.emacswiki.org/cgi-bin/wiki/CSharpMode
+   http://mfgames.com/linux/docs/csharp-mode
+
+
+   DEBUGGING
+
+   cd yaz
+   CFLAGS='-g' ./configure --enable-shared 
+   make clean
+   make
+
+   cd Zoom.Net
+    LD_LIBRARY_PATH=/home/marc/code/id/yaz/src/.libs gdb /usr/bin/mono
+   > run ./Test...
+
+   CLI PACKAGING POLICY
+   http://pkg-mono.alioth.debian.org/cli-policy/index.html
+
+
+   MONO PATH setting
+   export MONO_PATH=`pwd`
+   export MONO_PATH="`pwd`:/usr/lib/nunit"
+   export PATH="$PATH:$MONO_PATH"
+  
+   This hack of appennding the MONO_PATH to the PATH is unfortunately needed
+   for NANT to work.
+ 
+   See examples in mono.sh which can be invoked by 
+
+   source mono.sh

@@ -1,0 +1,339 @@
+<?xml version="1.0"?>
+<!--
+   $Id: nant.build,v 1.22 2006/05/22 13:13:01 crommemarc Exp $
+
+   NANT build configuration for MICROSOFT .NET and MONO GNU/DEBIAN LINUX 
+   builds. See details in README, README.NET and README.Debian files. 
+
+   Copyright (c) 2005, Talis Information Limited.
+
+   Permission to use, copy, modify, distribute, and sell this software and
+   its documentation, in whole or in part, for any purpose, is hereby granted,
+   provided that:
+
+   1. This copyright and permission notice appear in all copies of the
+   software and its documentation. Notices of copyright or attribution
+   which appear at the beginning of any file must remain unchanged.
+
+   2. The names of BLCMP, Talis Information Limited or the individual authors
+   may not be used to endorse or promote products derived from this software
+   without specific prior written permission.
+
+   3. Users of this software agree to make their best efforts, when
+   documenting their use of the software, to acknowledge Zoom.Net
+   and the role played by the software in their work.
+
+   THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS, IMPLIED, OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY
+   WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+   IN NO EVENT SHALL INDEX DATA BE LIABLE FOR ANY SPECIAL, INCIDENTAL,
+   INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND, OR ANY DAMAGES
+   WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER OR
+   NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF
+   LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
+   OF THIS SOFTWARE.
+-->
+
+<project name="Zoom.Net" default="build" basedir=".">
+  <description>Zoom.Net build system</description>
+
+  <property name="debug" value="false"/>
+  <property name="builddir" value="${project::get-base-directory()}"/>
+  <property name="nantdir" value="${nant::get-base-directory()}"/>
+  <property name="now" value="${datetime::now()}"/>
+  <property name="system" value="${environment::get-operating-system()}"/>
+  <property name="platform" value="${platform::get-name()}"/>
+  <property name="path" value="${environment::get-variable('PATH')}"/>
+  <property name="monopath" if ="${environment::variable-exists('MONO_PATH')}" 
+            value="${environment::get-variable('MONO_PATH')}"/>
+   
+  <fileset id="cleanfiles">
+    <include name="*.exe"/>
+    <include name="*.dll"/>
+    <include name="*.mdb"/>  <!-- mono debug files -->
+    <include name="*.pdb"/>  <!-- .NET debug files -->
+    <include name="*.log"/>
+    <include name="*.config"/>
+    <include name="nant.xsd"/>
+    <include name="TAGS"/>
+    <include name="doc/LinearHtml.css"/>
+  </fileset>
+
+  <fileset id="zoomnet_sourcefiles">
+    <include name="Zoom.Net/AssemblyInfo.cs"/>
+    <include name="Zoom.Net/Bib1Diagnostic.cs"/>
+    <include name="Zoom.Net/Bib1Exception.cs"/>
+    <include name="Zoom.Net/Config.cs"/>
+    <include name="Zoom.Net/ConnectionTimeoutException.cs"/>
+    <include name="Zoom.Net/ConnectionUnavailableException.cs"/>
+    <include name="Zoom.Net/GenericFactory.cs"/>
+    <include name="Zoom.Net/IConnection.cs"/>
+    <include name="Zoom.Net/IConnectionExtended.cs"/>
+    <include name="Zoom.Net/IConnectionFactory.cs"/>
+    <include name="Zoom.Net/IConnectionOptionsCollection.cs"/>
+    <include name="Zoom.Net/ICQLQuery.cs"/>
+    <include name="Zoom.Net/IQuery.cs"/>
+    <include name="Zoom.Net/IQueryFactory.cs"/>
+    <include name="Zoom.Net/IPackage.cs"/>
+    <include name="Zoom.Net/IPackageOptionsCollection.cs"/>
+    <include name="Zoom.Net/IPrefixQuery.cs"/>
+    <include name="Zoom.Net/IRecord.cs"/>
+    <include name="Zoom.Net/IResultSet.cs"/>
+    <include name="Zoom.Net/IResultSetOptionsCollection.cs"/>
+    <include name="Zoom.Net/IScanSet.cs"/>
+    <include name="Zoom.Net/IScanTerm.cs"/>
+    <include name="Zoom.Net/InitRejectedException.cs"/>
+    <include name="Zoom.Net/InvalidQueryException.cs"/>
+    <include name="Zoom.Net/QueryException.cs"/>
+    <include name="Zoom.Net/QueryType.cs"/>
+    <include name="Zoom.Net/RecordSyntax.cs"/>
+    <include name="Zoom.Net/ZoomImplementationException.cs"/>
+  </fileset>
+
+  <fileset id="zoomnetyazsharp_sourcefiles">
+    <include name="Zoom.Net.YazSharp/AssemblyInfo.cs"/>
+    <include name="Zoom.Net.YazSharp/Connection.cs"/>
+    <include name="Zoom.Net.YazSharp/ConnectionExtended.cs"/>
+    <include name="Zoom.Net.YazSharp/ConnectionOptionsCollection.cs"/>
+    <include name="Zoom.Net.YazSharp/Log.cs"/>
+    <include name="Zoom.Net.YazSharp/CQLQuery.cs"/>
+    <include name="Zoom.Net.YazSharp/Package.cs"/>
+    <include name="Zoom.Net.YazSharp/PackageOptionsCollection.cs"/>
+    <include name="Zoom.Net.YazSharp/PrefixQuery.cs"/>
+    <include name="Zoom.Net.YazSharp/Record.cs"/>
+    <include name="Zoom.Net.YazSharp/ResultSet.cs"/>
+    <include name="Zoom.Net.YazSharp/ResultSetEnumerator.cs"/>
+    <include name="Zoom.Net.YazSharp/ResultSetOptionsCollection.cs"/>
+    <include name="Zoom.Net.YazSharp/ScanSet.cs"/>
+    <include name="Zoom.Net.YazSharp/ScanTerm.cs"/>
+    <include name="Zoom.Net.YazSharp/Yaz.cs"/>
+  </fileset>
+
+  <fileset id="zoomnetyazsharptest_sourcefiles">
+    <include name="Zoom.Net.YazSharp.Test/TestConnection.cs"/>
+    <include name="Zoom.Net.YazSharp.Test/TestConnectionExtended.cs"/>
+    <include name="Zoom.Net.YazSharp.Test/TestConnectionOptions.cs"/>
+    <!-- <include name="Zoom.Net.YazSharp.Test/TestFactories.cs"/> -->
+    <include name="Zoom.Net.YazSharp.Test/TestPrefixQuery.cs"/>
+    <include name="Zoom.Net.YazSharp.Test/TestRecord.cs"/>
+    <include name="Zoom.Net.YazSharp.Test/TestResultSetOptions.cs"/>
+    <include name="Zoom.Net.YazSharp.Test/TestScan.cs"/>
+  </fileset>
+
+  <fileset id="test_sourcefiles">
+    <include name="Zoom.Net.YazSharp.Test/TestFactories.cs"/>
+  </fileset>
+
+  <fileset id="configfiles">
+    <include name="*/*.config"/>
+  </fileset>
+
+  <target name="help" description="Display Nant Targets">
+      <echo>NANT build system options</echo>
+      <echo>  nant -e     (output Emacs formatted errors and warnings)</echo>
+      <echo>  nant -find  (find nant.build in ancestor directories)</echo>
+      <echo></echo>
+      <echo>NANT build system targets</echo>
+      <echo>  nant         (defaults to nant build)</echo>
+      <echo>  nant build   (build Zoom.Net DLL's)</echo>
+      <echo>  nant check   (build and run NUnit test suite)</echo>
+      <echo>  nant clean   (clean all generated files)</echo>
+      <echo>  nant doxygen (generate Doxygen source code documentation)</echo>
+      <echo>  nant help    (display this help messages)</echo>
+      <echo>  nant ndoc    (generate NDoc source code documentation)</echo>
+      <echo>  nant schema  (generate nant.xsd XML schema)</echo>
+      <echo>  nant test    (build manual test executables)</echo>
+      <echo></echo>
+      <echo>NANT properties</echo>
+      <echo>  debug:       ${debug}</echo>
+      <echo>  builddir:    ${builddir}</echo>
+      <echo>  nantdir:     ${nantdir}</echo>
+      <echo>  now:         ${now}</echo>
+      <echo>  system:      ${system}</echo>
+      <echo>  platform:    ${platform}</echo>
+      <echo>  path:        ${path}</echo>
+      <echo 
+        if="${property::exists('monopath')}">  monopath:    ${monopath}</echo>
+  </target>
+
+  <target name="build" description="Build Everything"
+          depends="zoomnet,zoomnetyazsharp">
+  </target>
+
+  <target name="check" description="Build and Run Unit Tests"
+          depends="build,zoomnetyazsharptest,nunit"/>
+
+  <target name="clean" description="Clean Derived Files">
+    <delete>
+      <fileset refid="cleanfiles"/>
+    </delete>
+    <delete if="${directory::exists('doc/html')}" dir="doc/html"/>
+    <delete if="${directory::exists('doc/MSDN')}" dir="doc/MSDN"/>
+    <delete if="${directory::exists('doc/ndoc_linearhtml_temp')}" 
+            dir="doc/ndoc_linearhtml_temp"/>
+  </target>
+
+  <target name="doxygen" description="Build Documentation">
+    <exec program="doxygen" if="${file::exists('/usr/bin/doxygen')}">
+      <arg value="doc/Doxyfile" />
+    </exec>
+  </target>
+
+  <target name="examples" description="Build Example Zoom.Net Clients"
+          depends="build,zoomclient"/>
+
+  <!-- ndoc-console zoom.net.dll zoom.net.yazsharp.dll  -->
+  
+  <target name="ndoc" description="NDoc Build Documentation"
+          depends="zoomnet,zoomnetyazsharp">
+    <ndoc>
+      <assemblies>
+        <include name="zoom.net.dll" />
+        <include name="zoom.net.yazsharp.dll" />
+      </assemblies>
+     
+
+      <!--<summaries basedir="${builddir}">-->
+      <summaries>
+        <include name="doc/namespace-summary.xml" />
+      </summaries>-->
+      <documenters>
+        <!--
+        <documenter name="LinearHtml">
+        </documenter>
+        -->
+        <!--
+        <documenter name="MSDN">
+          <property name="OutputDirectory" value="doc/MSDN" />
+            <property name="IncludeFavorites" value="False" />
+            <property name="Title" value="Zoom.Net Source Documentation" />
+            <property name="SplitTOCs" value="False" />
+            <property name="DefaulTOC" value="" />
+            <property name="ShowMissingSummaries" value="True" />
+            <property name="ShowMissingRemarks" value="True" />
+            <property name="ShowMissingParams" value="True" />
+            <property name="ShowMissingReturns" value="True" />
+            <property name="ShowMissingValues" value="True" />
+            <property name="DocumentInternals" value="False" />
+            <property name="DocumentProtected" value="True" />
+            <property name="DocumentPrivates" value="False" />
+            <property name="DocumentEmptyNamespaces" value="True" />
+            <property name="IncludeAssemblyVersion" value="True" />
+        </documenter>
+        -->
+      </documenters>
+    </ndoc>
+  </target>
+
+  <target name="schema" description="Generate NAnt XML Schema">
+    <nantschema output="nant.xsd" />
+  </target>
+
+  <target name="zoomnet" description="compiles the source code">
+    <csc target="library" 
+         output="${builddir}/zoom.net.dll" 
+         debug="${debug}">
+      <sources refid="zoomnet_sourcefiles"/>
+    </csc>
+  </target>
+
+  <target name="zoomnetyazsharp" description="compiles the source code"
+          depends="zoomnet">
+    <csc target="library" 
+         output="${builddir}/zoom.net.yazsharp.dll" 
+         debug="${debug}"
+         unsafe="true">
+      <sources refid="zoomnetyazsharp_sourcefiles"/>
+      <references>
+        <include name="zoom.net.dll"/>
+      </references>
+    </csc>
+  </target>
+
+  <target name="zoomnetyazsharptest" description="compiles the unit tests"
+          depends="zoomnet,zoomnetyazsharp">
+    <csc target="library" 
+         output="${builddir}/zoom.net.yazsharp.test.dll" 
+         debug="${debug}"
+         unsafe="true">
+      <sources  refid="zoomnetyazsharptest_sourcefiles"/>
+      
+      <references>
+        <include name="${builddir}/zoom.net.dll"/>
+        <include name="${builddir}/zoom.net.yazsharp.dll"/>
+        <include frompath="true" name="nunit.framework.dll"/>
+      </references>
+    </csc>
+  </target>
+
+
+  <target name="nunit" description="runs the unit tests"
+          depends="zoomnetyazsharptest">
+   <echo>You have to start up the test server on'localhost:9999'</echo>
+   <echo>On GNU/Debian Linux, use yaz-ztest, 
+   standing inside the yaz/ztest directory</echo> 
+
+ 
+   <nunit2 if="${platform::is-unix()}">
+     <formatter type="Plain"/>
+     <test assemblyname="${builddir}/zoom.net.yazsharp.test.dll"/>
+   </nunit2>
+ 
+   <!--
+       <exec if="${platform::is-win32()}" program="nunit-console">
+       <arg file="${builddir}/zoom.net.yazsharp.test.dll" />
+       </exec>
+   -->  
+   <echo if="${platform::is-win32()}" >On WIN32 systems, run the following command manually:</echo>
+   <echo>nunit-console zoom.net.yazsharp.test.dll</echo>
+
+  </target>
+
+  <target name="zoomclient" 
+          description="Build Simple Command Line Zoom Client">
+    <csc target="exe" output="zoom-client.exe" debug="${debug}">
+      <sources>
+        <include name="examples/zoom-client.cs"/>
+      </sources> 
+      <references>
+        <!--
+        <lib>
+          <include name="${builddir}"/>
+        </lib>
+        -->
+        <include name="${builddir}/zoom.net.dll"/>
+        <include name="${builddir}/zoom.net.yazsharp.dll"/>
+      </references>
+    </csc>
+    <copy file="examples/zoom-client.exe.config" 
+          todir="${builddir}"/>
+  </target>
+
+  <target name="test" description="Build Manual Tests"
+          depends="zoomnet,zoomnetyazsharp">
+    <csc target="exe" 
+         output="TestFactories.exe" 
+         debug="${debug}"
+         unsafe="true">
+      <sources>
+        <include name="Zoom.Net.YazSharp.Test/TestFactories.cs"/>
+      </sources>
+      
+      <references>
+        <include name="${builddir}/zoom.net.dll"/>
+        <include name="${builddir}/zoom.net.yazsharp.dll"/>
+        <include frompath="true" name="nunit.framework.dll"/>
+      </references>
+    </csc>
+    <copy file="Zoom.Net.YazSharp.Test/TestFactories.exe.config" 
+          todir="${builddir}"/>
+      
+  </target>
+
+</project>
+
+<!-- Emacs NXML mode
+ Local variables:
+ mode: nxml
+ End:
+-->

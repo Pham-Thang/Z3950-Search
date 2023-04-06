@@ -45,6 +45,12 @@
             "projectReferences": {
               "D:\\Develop\\asp.net C#\\Z3950-Search\\CSharp_MARC\\CSharp_MARC.csproj": {
                 "projectPath": "D:\\Develop\\asp.net C#\\Z3950-Search\\CSharp_MARC\\CSharp_MARC.csproj"
+              },
+              "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net.YazSharp\\Zoom.Net.YazSharp.csproj": {
+                "projectPath": "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net.YazSharp\\Zoom.Net.YazSharp.csproj"
+              },
+              "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net\\Zoom.Net.csproj": {
+                "projectPath": "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net\\Zoom.Net.csproj"
               }
             }
           }
@@ -82,6 +88,40 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net.YazSharp\\Zoom.Net.YazSharp.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net.YazSharp\\Zoom.Net.YazSharp.csproj",
+        "projectName": "Zoom.Net.YazSharp",
+        "projectPath": "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net.YazSharp\\Zoom.Net.YazSharp.csproj",
+        "frameworks": {
+          "net40": {
+            "projectReferences": {
+              "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net\\Zoom.Net.csproj": {
+                "projectPath": "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net\\Zoom.Net.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net40": {}
+      }
+    },
+    "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net\\Zoom.Net.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net\\Zoom.Net.csproj",
+        "projectName": "Zoom.Net",
+        "projectPath": "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net\\Zoom.Net.csproj",
+        "frameworks": {
+          "net40": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net40": {}
       }
     }
   }

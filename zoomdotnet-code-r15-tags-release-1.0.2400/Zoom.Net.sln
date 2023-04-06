@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D9910FCA-D622-450A-8B40-6F90379C27EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoom.Net", "Zoom.Net\Zoom.Net.csproj", "{9337BDA3-2B49-42EA-95AC-4ADE30DBD1A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoom.Net.YazSharp", "Zoom.Net.YazSharp\Zoom.Net.YazSharp.csproj", "{0629E2F3-B371-4691-AE5E-DE42BA3821C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9337BDA3-2B49-42EA-95AC-4ADE30DBD1A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9337BDA3-2B49-42EA-95AC-4ADE30DBD1A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9337BDA3-2B49-42EA-95AC-4ADE30DBD1A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9337BDA3-2B49-42EA-95AC-4ADE30DBD1A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0629E2F3-B371-4691-AE5E-DE42BA3821C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0629E2F3-B371-4691-AE5E-DE42BA3821C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0629E2F3-B371-4691-AE5E-DE42BA3821C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0629E2F3-B371-4691-AE5E-DE42BA3821C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A6BE1ED8-412F-4B92-A1F1-76ED9FB37211}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,178 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9337BDA3-2B49-42EA-95AC-4ADE30DBD1A8}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Zoom.Net</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Zoom.Net</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>doc\Zoom.Net.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>doc\Zoom.Net.xml</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bib1Diagnostic.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bib1Exception.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ConnectionTimeoutException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ConnectionUnavailableException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GenericFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IConnection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IConnectionExtended.cs" />
+    <Compile Include="IConnectionFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IConnectionOptionsCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ICQLQuery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InitRejectedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InvalidQueryException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IPackage.cs" />
+    <Compile Include="IPackageOptionsCollection.cs" />
+    <Compile Include="IPrefixQuery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IQuery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IQueryFactory.cs" />
+    <Compile Include="IRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IResultSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IResultSetOptionsCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IScanSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IScanTerm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QueryException.cs" />
+    <Compile Include="QueryType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RecordSyntax.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ZoomImplementationException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="Zoom.Net.Factory.Config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

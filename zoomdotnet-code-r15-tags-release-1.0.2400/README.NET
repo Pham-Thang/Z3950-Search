@@ -1,0 +1,76 @@
+ZOOM.NET ON MICROSOFT .NET MS SERVER 2003 EDITION
+
+  YAZ
+  Fetch http://ftp.indexdata.dk/pub/zebra/win32/idzebra_1.3.32.exe
+  to Desktop and install by running the installer.
+
+  Make sure that C:/Program Files/YAZ/bin is in the Windoes PATH.
+  Eventually add to some suitable .BAT file, or execute by hand inside
+  DOS shell
+
+  set PATH=%PATH%;C:/Program Files/YAZ/bin 
+
+  More info found on http://www.indexdata.dk/yaz
+
+
+  NANT
+  Fetch http://prdownloads.sourceforge.net/nant/nant-0.85-rc3-bin.zip?download
+
+  Unzip in C:\Program Files
+
+  Make sure that C:/Program Files/nant-0.85-rc3/bin is in the Windoes PATH.
+  Eventually add to some suitable .BAT file, or execute by hand inside
+  DOS shell
+
+  set PATH=%PATH%;C:/Program Files/nant-0.85-rc3/bin
+
+  see msnet.bat as example
+
+  More info found on http://nant.sourceforge.net/
+
+  NUNIT
+
+  Fetch NUnit installer from  
+  http://www.nunit.org/index.php?p=download
+
+  set PATH=%PATH%;C:/Program Files/NUnit 2.2.8/bin
+
+  see msnet.bat as example
+
+
+  ZOOM.NET
+  Unpack in any directory you wish.
+  Open a VS 2005 Command shell by klicking
+
+  Start --> All Programs --> Microsoft Visual Studio 2005 
+        --> Visual Studio --> Command Prompt
+
+  or similar.
+
+  CD into Zoom.Net directory. Remember to set PATH as explained above.
+
+  Build everything and test using the NANT and NUNIT commands
+
+  nant
+  nant check
+  nunit-console zoom.net.yazsharp.test.dll
+  
+
+
+  CVS CLIENTS FOR WINDOWS
+
+  Command Line:
+ 
+  	Concurrent Versions System (CVSNT) 2.0.41a (client/server)
+	see http://www.cvsnt.org
+
+  Windows Explorer Plugin:
+
+        Tortoise CVS, see http://www.tortoisecvs.org/
+
+
+  DLL LOAD PATH SETTINGS
+
+  set PATH=%PATH%;C:/Program Files/nant-0.85-rc3/bin
+
+  see msnet.bat as example

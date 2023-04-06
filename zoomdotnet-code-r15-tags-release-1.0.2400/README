@@ -1,0 +1,285 @@
+ZOOM.NET - A Z39.50 ZOOM BINDING FOR .NET LANGUAGES
+
+OVERVIEW OF ZOOM.NET
+
+   The Zoom.Net project provides two key things:
+
+    * A ZOOM Binding for .Net Languages
+    * An initial implementation called YazSharp, a C# wrapper around
+      Index Data's Yaz library. 
+
+   For more information, read the following topics.
+
+
+
+THE ZOOM.NET INTERFACES (includes yet no UML diagram)
+
+See http://zoom.z3950.org/api/zoom-1.4.html for reference.
+
+The Z39.50 services are provided as methods on classes, where the
+classes represent the key Z39.50 concepts: Connection, Query, Result
+Set, Record, and Scan Set.
+
+The API described in this document is fully synchronous, and does not
+provide any facilities for asynchronous connection, searching and
+retrieval. 
+
+C# allows for the concept of interfaces as abstract class
+types. Zoom.Net exposes the Zoom classes as abstract interfaces:
+IConnection, IQuery, IResultSet, IRecord, and IScanSet, which are
+defined in the Zoom::Net namespace. In the Zoom::Net::YazSharp
+namespace we provide instances of these interfaces, which wrap the
+unmanaged YAZ C libraries by help of marshalling into a C# assembly.
+
+Connection
+    or an ``application association'', as the OSI terminology in the
+    standard has it - represents an ongoing dialogue between the
+    client (``origin'' in the standard) and server (``target''). A
+    connection is forged by the act of creating a Connection object;
+    and initialization is performed implicitly, so that the new object
+    is ready to be used immediately. 
+
+    The Connection class supports methods for instantiation and
+    searching, together with the housekeeping and option management
+    methods provided on all classes.
+
+    Zoom::Net::IConnection Interface  
+    Zoom::Net::YazSharp::Connection Implementation
+    Zoom::Net::IConnectionFactory Factory
+
+    The Zoom::Net implementation has the following standard
+    options: user, password, databaseName, which can be set directly
+    on an object conforming to Zoom::Net::IConnection with the 
+    User, Password and DatabaseName properties.
+
+    Other standard options described at 
+    http://zoom.z3950.org/api/zoom-1.4.html#3.8 are
+    implemented using the Zoom::Net::IConnectionOptions
+    interface, see the following info for all possible values:   
+    http://www.indexdata.dk/yaz/doc/zoom.tkl#zoom.connections
+
+    Create without connection is not supported.
+
+    Search and Scan operation is supported.
+
+
+Query 
+    represents a set of search criteria which will be submitted to a
+    server via a connection. There are various subclasses of the Query
+    class, representing different query syntaxes. 
+
+    The Zoom::Net implementation has the PQF Prefix query classes
+
+    Zoom::Net::IPrefixQuery     
+    Zoom::Net::YazSharp::PrefixQuery 
+
+    and the CQL query classes
+
+    Zoom::Net::ICQLQuery     
+    Zoom::Net::YazSharp::CQLQuery 
+
+    which are all implementing the same interface
+
+    Zoom::Net::IQuery     
+
+    The factory class
+
+    Zoom::Net::IQueryFactory 
+
+    is capable of creating both of them.
+ 
+    CQL Query C# classes/interfaces are wrappers; the queries are sent 
+    to the server unprocessed. See 
+    http://www.indexdata.dk/yaz/doc/zoom.query.tkl
+
+
+    CQL and CCL client side query formats are not supported. 
+
+    CCL query formats require the implementation of a CCL parser
+    written in C#, a parser configuration utility and configuration
+    file format, and an additional CCL Query class added to Zoom::Net,
+    which represents substantial work.
+
+
+
+Result Set
+    represents a set of records, held on a server, which have been
+    identified by searching (that is, submitting a Query to a
+    Connection). 
+
+    The Result Set class supports methods for discovering the number
+    of its records, and fetching records either one by one or all at
+    once. 
+
+    Zoom::Net::IResultSet
+    Zoom::Net::YazSharp::ResultSet 
+    Result Sets essentially are a collection of Records, which can be
+    fetched individually by the '[]' operator.
+
+    Size is supported.
+
+    Zoom::Net::IResultSetOptionsCollection
+    Zoom::Net::YazSharp::ResultSetOptionsCollection         
+    ResultSet options are supported. See following link for possible
+    values: 
+    http://www.indexdata.dk/yaz/doc/zoom.resultsets.tkl
+
+
+Record
+     represents a record from a result set, which has been retrieved
+     from a server. 
+
+     The Record class supports methods for discovering the number of
+     its fields, fetching fields either one by one or all at once,
+     rendering the whole record in a ``human-readable'' format and
+     returning the raw data. 
+
+     Zoom::Net::IRecord
+     Zoom::Net::YazSharp::Record 
+
+     Syntax and Raw data are supported.
+     
+     Database, Render, XML, OPAC are not supported, but could be
+     added at a reasonable work cost. See
+     http://www.indexdata.dk/yaz/doc/zoom.records.tkl
+
+
+Scan Set 
+      represents a set of potential query terms which a server suggests
+      may be useful. In some cases, the terms may be accompanied by hit
+      counts and other information. 
+
+      Zoom::Net::IScanSet
+      Zoom::Net::YazSharp::ScanSet 
+
+
+      Size supported.
+
+      Term supported. In Zoom::Net the return values of the Term
+      operation are ScanTerm objects rather than strings, which is a
+      logical extension of the similar functionality in Record sets
+      and Record objects. This is not forseen in the Zoom specifications.
+      See the following Class/Interface definitions:
+
+      Zoom::Net::IScanTerm
+      Zoom::Net::YazSharp::ScanTerm 
+
+      Field 'freq' is implemented in the Occurrences operation on
+      IScanTerm.
+
+      Fields 'display', 'attrs', 'alt' and 'other' are not
+      supported. See http://www.indexdata.dk/yaz/doc/zoom.scan.tkl
+
+
+
+Exceptions
+ 
+     The Zoom specification is a bit loose on exceptions. Zoom::Net
+     does implement a very reasonable set of exceptions:    
+
+      Zoom::Net::Bib1Exception
+      Zoom::Net::ConnectionTimeoutException 
+      Zoom::Net::QueryException
+
+      Zoom::Net::ZoomImplementationException (which subclasses to
+            Zoom::Net::ConnectionUnavailableException
+            Zoom::Net::InitRejectedException
+            Zoom::Net::InvalidQueryException)
+
+
+Extended Services 
+
+      Extended services are supported through the following interfaces
+      and classes: 
+
+      Zoom::Net::IConnectionExtended
+      Zoom::Net::YazSharp::ConnectionExtended
+
+      The interface IConnectionExtended can be used to search and scan
+      exactly as IConnection interface implementations, but extends it with a 
+      Package(string type) IPackage factory call. The factory call constructs 
+
+      Zoom::Net::IPackage
+      Zoom::Net::YazSharp::Package
+
+      Packages, of type 'itemorder', 'update', or of one of the
+      extention types 'create', 'drop', 'commit'.  
+      These packages can be configures through setting appropriate 
+     
+      Zoom::Net::IPackageOptionsCollection
+      Zoom::Net::YazSharp::PackageOptionsCollection 
+
+      Options. 
+
+      The exact range of Extended Services implemented on top of the
+      ZOOM YAZ C API, including package types and package options, is
+      described at http://www.indexdata.dk/yaz/doc/zoom.ext.tkl 
+
+
+
+DOWNLOADING AND USING ZOOM.NET AND ZOOM.NET.YAZSHARP
+
+   Gain anonymous CVS access by issuing:
+
+
+   cvs -d:pserver:anonymous@zoomdotnet.cvs.sourceforge.net:/cvsroot/zoomdotnet  
+          login
+ 
+   cvs -z3 -d:pserver:anonymous@zoomdotnet.cvs.sourceforge.net:/cvsroot/zoomdotnet 
+          co -P Zoom.Net
+
+   (you might want to install the Cygwin cvs client from 
+      http://linux.sns.it/cygwin/download.html
+      http://linux.sns.it/cygwin/index.html)
+
+   Or fetch the zipfile/tarball from 
+   http://sourceforge.net/projects/zoomdotnet/
+
+   See README.NET and README.Debian for platfrom specific compilation
+   and installation hints.
+
+   Thereafter, unzip the sources, step into project root dir, and issue
+
+   nant
+   nant check
+
+   Other nant taargets are
+
+   nant doc  (if you have doxygen installed)
+   nant clean
+
+   Or use the MS VS buildsystem from your IDE (out of sync these days).
+
+
+
+LICENSE
+
+   This is open source software. Please see the LICENSE file.
+
+
+URL'S FOR FURTHER INFORMATION
+
+   Zoom.Net Sourceforge site
+     http://zoomdotnet.sourceforge.net/
+     http://sourceforge.net/projects/zoomdotnet/
+
+   Zoom specification and standard
+     http://www.loc.gov/z3950/agency/zing/
+     http://zoom.z3950.org/index.html
+     http://zoom.z3950.org/api/index.html
+     http://zoom.z3950.org/api/zoom-1.4.html
+
+   Talis Information Limited
+     http://www.talis.com/home/
+
+   Index Data
+     http://www.indexdata.com/
+     http://www.indexdata.com/yaz/
+     http://www.indexdata.dk/yaz/doc/zoom.tkl
+
+
+DEVELOPERS
+
+   Rob Styles      Talis Information Limited  mmmmmrob at users.sourceforge.net
+   Eric C. Willman Talis Information Limited  willman at users.sourceforge.net
+   Marc Cromme     Index Data  crommemarc at users.sourceforge.net

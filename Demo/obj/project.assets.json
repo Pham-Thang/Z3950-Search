@@ -23,6 +23,27 @@
         "runtime": {
           "bin/placeholder/CSharp_MARC.dll": {}
         }
+      },
+      "Zoom.Net/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Zoom.Net.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Zoom.Net.dll": {}
+        }
+      },
+      "Zoom.Net.YazSharp/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Zoom.Net": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Zoom.Net.YazSharp.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Zoom.Net.YazSharp.dll": {}
+        }
       }
     }
   },
@@ -61,12 +82,24 @@
       "type": "project",
       "path": "../CSharp_MARC/CSharp_MARC.csproj",
       "msbuildProject": "../CSharp_MARC/CSharp_MARC.csproj"
+    },
+    "Zoom.Net/1.0.0": {
+      "type": "project",
+      "path": "../zoomdotnet-code-r15-tags-release-1.0.2400/Zoom.Net/Zoom.Net.csproj",
+      "msbuildProject": "../zoomdotnet-code-r15-tags-release-1.0.2400/Zoom.Net/Zoom.Net.csproj"
+    },
+    "Zoom.Net.YazSharp/1.0.0": {
+      "type": "project",
+      "path": "../zoomdotnet-code-r15-tags-release-1.0.2400/Zoom.Net.YazSharp/Zoom.Net.YazSharp.csproj",
+      "msbuildProject": "../zoomdotnet-code-r15-tags-release-1.0.2400/Zoom.Net.YazSharp/Zoom.Net.YazSharp.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "CSharp_MARC >= 1.0.0",
-      "Newtonsoft.Json >= 13.0.3"
+      "Newtonsoft.Json >= 13.0.3",
+      "Zoom.Net >= 1.0.0",
+      "Zoom.Net.YazSharp >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -98,6 +131,12 @@
           "projectReferences": {
             "D:\\Develop\\asp.net C#\\Z3950-Search\\CSharp_MARC\\CSharp_MARC.csproj": {
               "projectPath": "D:\\Develop\\asp.net C#\\Z3950-Search\\CSharp_MARC\\CSharp_MARC.csproj"
+            },
+            "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net.YazSharp\\Zoom.Net.YazSharp.csproj": {
+              "projectPath": "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net.YazSharp\\Zoom.Net.YazSharp.csproj"
+            },
+            "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net\\Zoom.Net.csproj": {
+              "projectPath": "D:\\Develop\\asp.net C#\\Z3950-Search\\zoomdotnet-code-r15-tags-release-1.0.2400\\Zoom.Net\\Zoom.Net.csproj"
             }
           }
         }

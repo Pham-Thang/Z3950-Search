@@ -30,6 +30,8 @@
 	
 	<ItemGroup>
 	  <ProjectReference Include="..\CSharp_MARC\CSharp_MARC.csproj" />
+	  <ProjectReference Include="..\zoomdotnet-code-r15-tags-release-1.0.2400\Zoom.Net.YazSharp\Zoom.Net.YazSharp.csproj" />
+	  <ProjectReference Include="..\zoomdotnet-code-r15-tags-release-1.0.2400\Zoom.Net\Zoom.Net.csproj" />
 	</ItemGroup>
 
   <ItemGroup>
