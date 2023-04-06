@@ -26,6 +26,16 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+	  <Compile Remove="ConnectionCustom.cs" />
+	  <Compile Remove="ConnectionOptionsCollectionCustom.cs" />
+	  <Compile Remove="IConnectionCustom.cs" />
+	  <Compile Remove="IConnectionOptionsCollectionCustom.cs" />
+	  <Compile Remove="IResultSetCustom.cs" />
+	  <Compile Remove="ResultSetCustom.cs" />
+	  <Compile Remove="YazCustom.cs" />
+	</ItemGroup>
+	
+	<ItemGroup>
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 	

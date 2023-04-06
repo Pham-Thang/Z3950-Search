@@ -46,7 +46,7 @@ namespace Zoom.Net.YazSharp
 		/// <param name="host"></param>
 		/// <param name="portnum"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern IntPtr ZOOM_connection_new(string host, int portnum);
 
 		/// <summary>
@@ -54,7 +54,7 @@ namespace Zoom.Net.YazSharp
 		/// </summary>
 		/// <param name="options"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern IntPtr ZOOM_connection_create(IntPtr options);
 
 		/// <summary>
@@ -64,7 +64,7 @@ namespace Zoom.Net.YazSharp
 		/// <param name="host"></param>
 		/// <param name="port"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_connection_connect(IntPtr c, string host, int port);
 
 		/// <summary>
@@ -72,7 +72,7 @@ namespace Zoom.Net.YazSharp
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_connection_destroy(IntPtr c);
 
 		/// <summary>
@@ -80,7 +80,7 @@ namespace Zoom.Net.YazSharp
 		/// </summary>
 		/// <param name="c"></param>
 		/// <param name="key"></param>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi, EntryPoint="ZOOM_connection_option_get")]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode, EntryPoint="ZOOM_connection_option_get")]
 		private static extern IntPtr ZOOM_connection_option_get_IntPtr(IntPtr c, string key);
 		public static string ZOOM_connection_option_get(IntPtr c, string key)
 		{
@@ -93,7 +93,7 @@ namespace Zoom.Net.YazSharp
 		/// <param name="c"></param>
 		/// <param name="key"></param>
 		/// <param name="value"></param>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_connection_option_set(IntPtr c, string key, string value);
 
 		/// <summary>
@@ -103,7 +103,7 @@ namespace Zoom.Net.YazSharp
 		/// <param name="key"></param>
 		/// <param name="value"></param>
 		/// <param name="length"></param>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_connection_option_setl(IntPtr c, string key, string value, int length);
 
 		/// <summary>
@@ -114,7 +114,7 @@ namespace Zoom.Net.YazSharp
 		/// <param name="cp"></param>
 		/// <param name="additionalInfo"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern int ZOOM_connection_error(IntPtr c, string cp, string additionalInfo);
 
 
@@ -127,7 +127,7 @@ namespace Zoom.Net.YazSharp
 		/// <param name="additionalInfo"></param>
 		/// <param name="diagSet"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern int ZOOM_connection_error_x(IntPtr c, string cp, string additionalInfo, string diagSet);
 
 		/// <summary>
@@ -135,7 +135,7 @@ namespace Zoom.Net.YazSharp
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern int ZOOM_connection_errcode(IntPtr c);
 
 		/// <summary>
@@ -143,7 +143,7 @@ namespace Zoom.Net.YazSharp
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi, EntryPoint="ZOOM_connection_errmsg")]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode, EntryPoint="ZOOM_connection_errmsg")]
 		private static extern IntPtr ZOOM_connection_errmsg_IntPtr(IntPtr c);
 		public static string ZOOM_connection_errmsg(IntPtr c)
 		{
@@ -155,7 +155,7 @@ namespace Zoom.Net.YazSharp
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi, EntryPoint="ZOOM_connection_addinfo")]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode, EntryPoint="ZOOM_connection_addinfo")]
 		private static extern IntPtr ZOOM_connection_addinfo_IntPtr(IntPtr c);
 		public static string ZOOM_connection_addinfo(IntPtr c)
 		{
@@ -167,7 +167,7 @@ namespace Zoom.Net.YazSharp
 		/// </summary>
 		/// <param name="error"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi, EntryPoint="ZOOM_diag_str")]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode, EntryPoint="ZOOM_diag_str")]
 		private static extern IntPtr ZOOM_diag_str_IntPtr(int error);
 		public static string ZOOM_diag_str(int error)
 		{
@@ -192,7 +192,7 @@ namespace Zoom.Net.YazSharp
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern int ZOOM_connection_last_event(IntPtr c);
 
 		public const int ZOOM_EVENT_NONE					= 0;
@@ -216,7 +216,7 @@ namespace Zoom.Net.YazSharp
 		/// <param name="c"></param>
 		/// <param name="q"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern IntPtr ZOOM_connection_search(IntPtr c, IntPtr q);
 
 		/// <summary>
@@ -225,7 +225,7 @@ namespace Zoom.Net.YazSharp
 		/// <param name="c"></param>
 		/// <param name="q"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern IntPtr ZOOM_connection_search_pqf(IntPtr c, string q);
 
 		/// <summary>
@@ -233,7 +233,7 @@ namespace Zoom.Net.YazSharp
 		/// </summary>
 		/// <param name="r"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern IntPtr ZOOM_resultset_destroy(IntPtr r);
 
 		/// <summary>
@@ -242,7 +242,7 @@ namespace Zoom.Net.YazSharp
 		/// <param name="r"></param>
 		/// <param name="key"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi, EntryPoint="ZOOM_resultset_option_get")]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode, EntryPoint="ZOOM_resultset_option_get")]
 		private static extern IntPtr ZOOM_resultset_option_get_IntPtr(IntPtr r, string key);
 		public static string ZOOM_resultset_option_get(IntPtr r, string key)
 		{
@@ -256,7 +256,7 @@ namespace Zoom.Net.YazSharp
 		/// <param name="key"></param>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi, EntryPoint="ZOOM_resultset_option_set")]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode, EntryPoint="ZOOM_resultset_option_set")]
 		private static extern IntPtr ZOOM_resultset_option_set_IntPtr(IntPtr r, string key, string value);
 		public static string ZOOM_resultset_option_set(IntPtr r, string key, string value)
 		{
@@ -268,7 +268,7 @@ namespace Zoom.Net.YazSharp
 		/// </summary>
 		/// <param name="r"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern uint ZOOM_resultset_size(IntPtr r);
 
 		/// <summary>
@@ -278,7 +278,7 @@ namespace Zoom.Net.YazSharp
 		/// <param name="recs"></param>
 		/// <param name="start"></param>
 		/// <param name="count"></param>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_resultset_records(IntPtr r, IntPtr recs, uint start, uint count);
 
 		/// <summary>
@@ -287,7 +287,7 @@ namespace Zoom.Net.YazSharp
 		/// <param name="r"></param>
 		/// <param name="position"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern IntPtr ZOOM_resultset_record(IntPtr r, uint position);
 
 		/// <summary>
@@ -296,10 +296,10 @@ namespace Zoom.Net.YazSharp
 		/// <param name="r"></param>
 		/// <param name="position"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern IntPtr ZOOM_resultset_record_immediate(IntPtr r, uint position);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_resultset_cache_reset(IntPtr r);
 
 		#endregion
@@ -313,11 +313,11 @@ namespace Zoom.Net.YazSharp
 		/// <param name="type"></param>
 		/// <param name="length"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi, EntryPoint="ZOOM_record_get_string")]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode, EntryPoint="ZOOM_record_get_string")]
 		private static extern IntPtr ZOOM_record_get_string_IntPtr(IntPtr record, string type, ref int length);
 
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi, EntryPoint="ZOOM_record_get")]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode, EntryPoint="ZOOM_record_get")]
 		private static extern IntPtr ZOOM_record_get_IntPtr(IntPtr record, string type, ref int length);
 		/// <summary>
 		/// get record information, in a form given by type
@@ -349,7 +349,7 @@ namespace Zoom.Net.YazSharp
 		/// destroy record
 		/// </summary>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_record_destroy_IntPtr(IntPtr record);
 
 		/// <summary>
@@ -357,7 +357,7 @@ namespace Zoom.Net.YazSharp
 		/// </summary>
 		/// <param name="sourceRecord"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern IntPtr ZOOM_record_clone(IntPtr sourceRecord);
 
 		#endregion
@@ -368,14 +368,14 @@ namespace Zoom.Net.YazSharp
 		/// create search object
 		/// </summary>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern IntPtr ZOOM_query_create();
 
 		/// <summary>
 		/// destroy it
 		/// </summary>
 		/// <param name="s"></param>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_query_destroy(IntPtr s);
 
 		/// <summary>
@@ -383,7 +383,7 @@ namespace Zoom.Net.YazSharp
 		/// </summary>
 		/// <param name="s"></param>
 		/// <param name="query"></param>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern int ZOOM_query_cql(IntPtr s, string query);
 
 		/// <summary>
@@ -392,7 +392,7 @@ namespace Zoom.Net.YazSharp
 		/// <param name="s"></param>
 		/// <param name="query"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern int ZOOM_query_prefix(IntPtr s, string query);
 
 		/// <summary>
@@ -401,7 +401,7 @@ namespace Zoom.Net.YazSharp
 		/// <param name="s"></param>
 		/// <param name="criteria"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern int ZOOM_query_sortby(IntPtr s, string criteria);
 
 		#endregion
@@ -414,63 +414,63 @@ namespace Zoom.Net.YazSharp
 		/// <param name="connection"></param>
 		/// <param name="startterm"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern IntPtr ZOOM_connection_scan(IntPtr connection, string startterm);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi, EntryPoint="ZOOM_scanset_term")]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode, EntryPoint="ZOOM_scanset_term")]
 		private static extern IntPtr ZOOM_scanset_term_IntPtr(IntPtr scan, uint position, out int occ, out int length);
 		public static string ZOOM_scanset_term(IntPtr scan, uint position, out int occ, out int length)
 		{
 			return Marshal.PtrToStringAnsi(ZOOM_scanset_term_IntPtr(scan, position, out occ, out length));
 		}
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi, EntryPoint="ZOOM_scanset_display_term")]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode, EntryPoint="ZOOM_scanset_display_term")]
 		private static extern IntPtr ZOOM_scanset_display_term_IntPtr(IntPtr scan, uint position, int occ, int length);
 		public static string ZOOM_scanset_display_term(IntPtr scan, uint position, int occ, int length)
 		{
 			return Marshal.PtrToStringAnsi(ZOOM_scanset_display_term_IntPtr(scan, position, occ, length));
 		}
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern uint ZOOM_scanset_size(IntPtr scan);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern uint ZOOM_scanset_destroy(IntPtr scan);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern uint ZOOM_scanset_option_get(IntPtr scan, string key);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern uint ZOOM_scanset_option_set(IntPtr scan, string key, string value);
 
 		#endregion
 
 		#region Extended Services Packages
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern IntPtr ZOOM_connection_package(IntPtr connection, IntPtr options);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_package_destroy(IntPtr package);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_package_send(IntPtr package, string type);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi, EntryPoint="ZOOM_package_option_get")]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode, EntryPoint="ZOOM_package_option_get")]
 		private static extern IntPtr ZOOM_package_option_get_IntPtr(IntPtr package, string key);
 		public static string ZOOM_package_option_get(IntPtr package, string key)
 		{
 			return Marshal.PtrToStringAnsi(ZOOM_package_option_get_IntPtr(package, key));
 		}
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_package_option_set(IntPtr package, string key, string value);
 
 		#endregion
 
 		#region sort
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_resultset_sort(IntPtr resultSet, string sortType, string sortSpec);
 
 		#endregion
@@ -478,7 +478,7 @@ namespace Zoom.Net.YazSharp
 		#region options
 
 		/* This area uses callbacks and I can't see any need for them - RS, 25/04/2005
-			[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+			[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 			public static extern IntPtr ZOOM_options_set_callback(IntPtr options, YazCallback callback );
 
 			public delegate void YazCallback(IntPtr handle, string name);
@@ -489,38 +489,38 @@ namespace Zoom.Net.YazSharp
 					void *handle);
 		*/
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern IntPtr ZOOM_options_create();
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern IntPtr ZOOM_options_create_with_parent(IntPtr parentOptions);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern IntPtr ZOOM_options_create_with_parent2(IntPtr parentOptions1, IntPtr parentOptions2);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi, EntryPoint="ZOOM_options_get")]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode, EntryPoint="ZOOM_options_get")]
 		private static extern IntPtr ZOOM_options_get_IntPtr(IntPtr options, string key);
 		public static string ZOOM_options_get(IntPtr options, string key)
 		{
 			return Marshal.PtrToStringAnsi(ZOOM_options_get_IntPtr(options, key));
 		}
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_options_set(IntPtr options, string key, string value);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_options_setl(IntPtr options, string key, string value, int length);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_options_destroy(IntPtr options);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern int ZOOM_options_get_bool(IntPtr options, string name, int defa);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern int ZOOM_options_get_int(IntPtr options, string name, int defa);
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void ZOOM_options_set_int(IntPtr options, string name, int defa);
 
 		#endregion
@@ -536,17 +536,17 @@ namespace Zoom.Net.YazSharp
 		/// <param name="no"></param>
 		/// <param name="connection"></param>
 		/// <returns></returns>
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern int ZOOM_event(int no, IntPtr connection);
 
 		#endregion
 
 		#region Yaz Functions
 
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void yaz_log_init(int level, string prefix, string name);
 		
-		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Ansi)]
+		[DllImport(YAZ_LIBRARY, SetLastError=true, CharSet=CharSet.Unicode)]
 		public static extern void yaz_log(LogLevel level, string message);
 
 		public enum LogLevel
